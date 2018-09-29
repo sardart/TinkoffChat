@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,22 +16,78 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="smartChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="cvV-6Y-aDO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Z8-FzR">
+                                <rect key="frame" x="16" y="36" width="288" height="288"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="height" multiplier="1:1" id="ooE-kF-Qf1"/>
+                                </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SG-Vc-mz4">
+                                <rect key="frame" x="223.5" y="243.5" width="80.5" height="80.5"/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.47058823529411764" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0SG-Vc-mz4" secondAttribute="height" multiplier="1:1" id="SqB-dY-nru"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="18" minY="18" maxX="18" maxY="18"/>
+                                <state key="normal" image="slr-camera-2-xxl"/>
+                                <connections>
+                                    <action selector="choosePhotoTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gj-qd-iC9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-G2-Yfa">
+                                <rect key="frame" x="20" y="492" width="280" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Kyc-2B-fF3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Редактировать">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dFw-DV-8dh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artur Sardaryan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-e3-SPj">
+                                <rect key="frame" x="16" y="348" width="288" height="33.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love iOS Development, know C/C++/Obj C, Swift, Python, JS/HTML, will code for food" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-rh-sNZ">
+                                <rect key="frame" x="16" y="397.5" width="288" height="72"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cvV-6Y-aDO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MhE-Bb-Lxp"/>
-                            <constraint firstItem="cvV-6Y-aDO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mp6-wt-det"/>
-                            <constraint firstItem="cvV-6Y-aDO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Xh2-Zy-uEC"/>
-                            <constraint firstAttribute="bottom" secondItem="cvV-6Y-aDO" secondAttribute="bottom" id="wXe-H4-hrg"/>
+                            <constraint firstItem="0SG-Vc-mz4" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" id="5Is-ZJ-fer"/>
+                            <constraint firstItem="zqb-e3-SPj" firstAttribute="top" secondItem="R0E-Z8-FzR" secondAttribute="bottom" constant="24" id="74T-3k-MJA"/>
+                            <constraint firstItem="fYX-G2-Yfa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BiQ-Eh-YZR"/>
+                            <constraint firstItem="zqb-e3-SPj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="H4f-Xm-64M"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fYX-G2-Yfa" secondAttribute="trailing" constant="20" id="O1z-W4-P6B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t0U-rh-sNZ" secondAttribute="trailing" constant="16" id="RTi-Pe-AiU"/>
+                            <constraint firstItem="R0E-Z8-FzR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="jG5-6r-TuC"/>
+                            <constraint firstItem="0SG-Vc-mz4" firstAttribute="bottom" secondItem="R0E-Z8-FzR" secondAttribute="bottom" id="m6S-xO-ZF0"/>
+                            <constraint firstItem="R0E-Z8-FzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mWu-5D-Uf8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" constant="16" id="oKr-k8-abk"/>
+                            <constraint firstItem="0SG-Vc-mz4" firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="width" multiplier="0.28" id="ove-pS-Hr0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fYX-G2-Yfa" secondAttribute="bottom" constant="20" id="qz7-8g-o7C"/>
+                            <constraint firstItem="t0U-rh-sNZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wzb-70-YEx"/>
+                            <constraint firstItem="t0U-rh-sNZ" firstAttribute="top" secondItem="zqb-e3-SPj" secondAttribute="bottom" constant="16" id="yF6-pU-Y5w"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zqb-e3-SPj" secondAttribute="trailing" constant="16" id="zeA-gJ-OXm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="choosePhotoButton" destination="0SG-Vc-mz4" id="Eaj-3z-Llq"/>
+                        <outlet property="editButton" destination="fYX-G2-Yfa" id="QMX-JK-vOp"/>
+                        <outlet property="myPhoto" destination="R0E-Z8-FzR" id="O2m-pC-dnE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,6 +95,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="420" height="820"/>
+        <image name="placeholder-user" width="600" height="600"/>
+        <image name="slr-camera-2-xxl" width="256" height="256"/>
     </resources>
 </document>
