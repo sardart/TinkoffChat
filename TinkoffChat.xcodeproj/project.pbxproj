@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		758D7C88215808FD00DA3774 /* smartChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smartChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		758D7C88215808FD00DA3774 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D7C8B215808FD00DA3774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D7C8D215808FD00DA3774 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		758D7C90215808FD00DA3774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		758D7C7F215808FD00DA3774 = {
 			isa = PBXGroup;
 			children = (
-				758D7C8A215808FD00DA3774 /* smartChat */,
+				758D7C8A215808FD00DA3774 /* TinkoffChat */,
 				758D7C89215808FD00DA3774 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +54,12 @@
 		758D7C89215808FD00DA3774 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				758D7C88215808FD00DA3774 /* smartChat.app */,
+				758D7C88215808FD00DA3774 /* TinkoffChat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		758D7C8A215808FD00DA3774 /* smartChat */ = {
+		758D7C8A215808FD00DA3774 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
 				758D7CA821582F5100DA3774 /* Extensions */,
@@ -71,7 +71,7 @@
 				758D7C94215808FE00DA3774 /* LaunchScreen.storyboard */,
 				758D7C97215808FE00DA3774 /* Info.plist */,
 			);
-			path = smartChat;
+			path = TinkoffChat;
 			sourceTree = "<group>";
 		};
 		758D7CA821582F5100DA3774 /* Extensions */ = {
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		758D7C87215808FD00DA3774 /* smartChat */ = {
+		758D7C87215808FD00DA3774 /* TinkoffChat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 758D7C9A215808FE00DA3774 /* Build configuration list for PBXNativeTarget "smartChat" */;
+			buildConfigurationList = 758D7C9A215808FE00DA3774 /* Build configuration list for PBXNativeTarget "TinkoffChat" */;
 			buildPhases = (
 				758D7C84215808FD00DA3774 /* Sources */,
 				758D7C85215808FD00DA3774 /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = smartChat;
+			name = TinkoffChat;
 			productName = smartChat;
-			productReference = 758D7C88215808FD00DA3774 /* smartChat.app */;
+			productReference = 758D7C88215808FD00DA3774 /* TinkoffChat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 758D7C83215808FD00DA3774 /* Build configuration list for PBXProject "smartChat" */;
+			buildConfigurationList = 758D7C83215808FD00DA3774 /* Build configuration list for PBXProject "TinkoffChat" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -132,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				758D7C87215808FD00DA3774 /* smartChat */,
+				758D7C87215808FD00DA3774 /* TinkoffChat */,
 			);
 		};
 /* End PBXProject section */
@@ -306,13 +306,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 335M2TB27W;
-				INFOPLIST_FILE = smartChat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TinkoffChat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sardart.smartchat.smartChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sardart.tinkoffchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -325,13 +325,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 335M2TB27W;
-				INFOPLIST_FILE = smartChat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TinkoffChat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sardart.smartchat.smartChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sardart.tinkoffchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -341,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		758D7C83215808FD00DA3774 /* Build configuration list for PBXProject "smartChat" */ = {
+		758D7C83215808FD00DA3774 /* Build configuration list for PBXProject "TinkoffChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				758D7C98215808FE00DA3774 /* Debug */,
@@ -350,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		758D7C9A215808FE00DA3774 /* Build configuration list for PBXNativeTarget "smartChat" */ = {
+		758D7C9A215808FE00DA3774 /* Build configuration list for PBXNativeTarget "TinkoffChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				758D7C9B215808FE00DA3774 /* Debug */,
