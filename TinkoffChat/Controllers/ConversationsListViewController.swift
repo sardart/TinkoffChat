@@ -18,9 +18,10 @@ class ConversationsListViewController: UIViewController {
     
     var onlineConversations = [Conversation]()
     var offlineConversations = [Conversation]()
+    let conversationsManager = ConversationsManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let conversationsManager = ConversationsManager()
         onlineConversations = conversationsManager.getConversations(count: 20, online: true)
         offlineConversations = conversationsManager.getConversations(count: 20, online: false)
 
@@ -82,6 +83,9 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         let conversationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
         conversationVC.title = selectedCell.name
+        if selectedCell.message != nil {
+            conversationVC.messages = conversationsManager.getMessages(count: 50)
+        }
         navigationController?.pushViewController(conversationVC, animated: true)
         
     }
