@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var myPhoto: UIImageView!
     @IBOutlet weak var editButton: UIButton!
@@ -16,30 +16,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var imagePicker = UIImagePickerController()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-//        print("editButton.frame = \(editButton.frame)")
-        // падаем, потому что контроллер пока не загрузил инфу из сториборда и не знает что у него есть кнопка editButton
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        stateControl(methodName: #function)
         
         imagePicker.delegate = self
-        print("editButton.frame = \(editButton.frame)")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        stateControl(methodName: #function)
-        
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupViews()
-        
-        print("editButton.frame = \(editButton.frame)")
-        // результат отличается так как во viewDidLoad мы еще не знаем точные размеры всех вьшек с учетом констрейнтов
-        
+
     }
     
     func setupViews() {
@@ -60,7 +46,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func choosePhotoTapped(_ sender: UIButton) {
-        print("Choose avatar")
         showActionSheet()
         
     }
@@ -106,50 +91,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stateControl(methodName: #function)
+    @IBAction func closeTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stateControl(methodName: #function)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        stateControl(methodName: #function)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        stateControl(methodName: #function)
-    }
-    
-    override func loadView() {
-        super.loadView()
-        stateControl(methodName: #function)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        stateControl(methodName: #function)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        stateControl(methodName: #function)
-    }
-    
     
 }
 
