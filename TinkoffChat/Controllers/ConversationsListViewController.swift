@@ -83,8 +83,9 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         let conversationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
         conversationVC.title = selectedCell.name
-        if selectedCell.message != nil {
+        if let lastMessage = selectedCell.message {
             conversationVC.messages = conversationsManager.getMessages(count: 50)
+            conversationVC.messages.append(Message(messageText: lastMessage, type: .incoming))
         }
         navigationController?.pushViewController(conversationVC, animated: true)
         
@@ -94,6 +95,7 @@ extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+
     
 }
 

@@ -15,6 +15,7 @@
 		7575010221695D0F00F5A046 /* ConversationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7575010121695D0F00F5A046 /* ConversationsManager.swift */; };
 		75750104216A255500F5A046 /* ConversationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75750103216A255500F5A046 /* ConversationListTableViewCell.swift */; };
 		75750106216A30C600F5A046 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75750105216A30C600F5A046 /* Message.swift */; };
+		75750108216A47C600F5A046 /* TableView+Scrolls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75750107216A47C600F5A046 /* TableView+Scrolls.swift */; };
 		758D7C8C215808FD00DA3774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D7C8B215808FD00DA3774 /* AppDelegate.swift */; };
 		758D7C8E215808FD00DA3774 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D7C8D215808FD00DA3774 /* ProfileViewController.swift */; };
 		758D7C91215808FD00DA3774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D7C8F215808FD00DA3774 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		7575010121695D0F00F5A046 /* ConversationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsManager.swift; sourceTree = "<group>"; };
 		75750103216A255500F5A046 /* ConversationListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListTableViewCell.swift; sourceTree = "<group>"; };
 		75750105216A30C600F5A046 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		75750107216A47C600F5A046 /* TableView+Scrolls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Scrolls.swift"; sourceTree = "<group>"; };
 		758D7C88215808FD00DA3774 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758D7C8B215808FD00DA3774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		758D7C8D215808FD00DA3774 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				757500FD2169589F00F5A046 /* Date+getDatetimeString.swift */,
+				75750107216A47C600F5A046 /* TableView+Scrolls.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				757500FA21693F7A00F5A046 /* ConversationTableViewCell.swift in Sources */,
 				75750106216A30C600F5A046 /* Message.swift in Sources */,
 				758D7CA3215821E100DA3774 /* AppConfiguration.swift in Sources */,
+				75750108216A47C600F5A046 /* TableView+Scrolls.swift in Sources */,
 				75750104216A255500F5A046 /* ConversationListTableViewCell.swift in Sources */,
 				757500F62169388400F5A046 /* ConversationsListViewController.swift in Sources */,
 				758D7C8C215808FD00DA3774 /* AppDelegate.swift in Sources */,

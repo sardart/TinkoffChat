@@ -29,12 +29,20 @@ class ConversationViewController: UIViewController {
         
         if messages.isEmpty {
             let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-            titleLabel.text = "Not messages yet."
+            titleLabel.text = "Not messages yet"
             titleLabel.textColor = UIColor.darkGray
             titleLabel.font = UIFont.systemFont(ofSize: 14)
             titleLabel.textAlignment = .center
             tableView.tableHeaderView = titleLabel
         }
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.scrollToBottom(animated: false)
     }
 
 

@@ -125,7 +125,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6F2-Yx-w9j">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6F2-Yx-w9j">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -256,9 +256,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-G2-Yfa">
-                                <rect key="frame" x="20" y="492" width="280" height="56"/>
+                                <rect key="frame" x="16" y="502" width="288" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="Kyc-2B-fF3"/>
+                                    <constraint firstAttribute="height" constant="50" id="Kyc-2B-fF3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="Edit Profile">
@@ -285,16 +285,16 @@
                         <constraints>
                             <constraint firstItem="0SG-Vc-mz4" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" id="5Is-ZJ-fer"/>
                             <constraint firstItem="zqb-e3-SPj" firstAttribute="top" secondItem="R0E-Z8-FzR" secondAttribute="bottom" constant="12" id="74T-3k-MJA"/>
-                            <constraint firstItem="fYX-G2-Yfa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BiQ-Eh-YZR"/>
+                            <constraint firstItem="fYX-G2-Yfa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="BiQ-Eh-YZR"/>
                             <constraint firstItem="zqb-e3-SPj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="H4f-Xm-64M"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fYX-G2-Yfa" secondAttribute="trailing" constant="20" id="O1z-W4-P6B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fYX-G2-Yfa" secondAttribute="trailing" constant="16" id="O1z-W4-P6B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t0U-rh-sNZ" secondAttribute="trailing" constant="16" id="RTi-Pe-AiU"/>
                             <constraint firstItem="R0E-Z8-FzR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="jG5-6r-TuC"/>
                             <constraint firstItem="0SG-Vc-mz4" firstAttribute="bottom" secondItem="R0E-Z8-FzR" secondAttribute="bottom" id="m6S-xO-ZF0"/>
                             <constraint firstItem="R0E-Z8-FzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mWu-5D-Uf8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" constant="16" id="oKr-k8-abk"/>
                             <constraint firstItem="0SG-Vc-mz4" firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="width" multiplier="0.28" id="ove-pS-Hr0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fYX-G2-Yfa" secondAttribute="bottom" constant="20" id="qz7-8g-o7C"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fYX-G2-Yfa" secondAttribute="bottom" constant="16" id="qz7-8g-o7C"/>
                             <constraint firstItem="t0U-rh-sNZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wzb-70-YEx"/>
                             <constraint firstItem="t0U-rh-sNZ" firstAttribute="top" secondItem="zqb-e3-SPj" secondAttribute="bottom" constant="12" id="yF6-pU-Y5w"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zqb-e3-SPj" secondAttribute="trailing" constant="16" id="zeA-gJ-OXm"/>
@@ -339,6 +339,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2bS-We-bYu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tlZ-Nx-Clm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3xa-mb-8Uh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fFa-5I-dCm">
@@ -350,7 +351,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="l5c-hl-1YK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tlZ-Nx-Clm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811.875" y="-598.94366197183103"/>
         </scene>

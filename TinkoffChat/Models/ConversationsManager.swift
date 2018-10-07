@@ -59,7 +59,7 @@ class ConversationsManager {
     }
     
     private func randomDate() -> Date {
-        let randomTimeInterval = -1 * TimeInterval(arc4random_uniform(96*3600))
+        let randomTimeInterval = -1 * TimeInterval(arc4random_uniform(72*3600))
         let randomDate = Date(timeIntervalSinceNow: randomTimeInterval)
         return randomDate
     }
