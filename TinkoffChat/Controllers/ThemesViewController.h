@@ -12,7 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @class ThemesViewController;
+
 @protocol ThemesViewControllerDelegate <NSObject>
 - (void)themesViewController: (ThemesViewController *)controller didSelectTheme:(UIColor *)selectedTheme;
 @end
@@ -20,19 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ThemesViewController : UIViewController
 
-@property (nonatomic, weak) id<ThemesViewControllerDelegate> delegate;
-@property (nonatomic, retain, readwrite) Theme* model;
+@property (weak, nonatomic) id<ThemesViewControllerDelegate> delegate;
+@property (retain, nonatomic) Theme* model;
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 
 - (IBAction)themeTapped:(UIButton *)sender;
 - (IBAction)closeTapped:(UIBarButtonItem *)sender;
 
-- (void) setupUI;
+- (void)animatedButtonsAppearance;
 - (void)changeTheme:(UIColor *)color;
 
 @end
-
-
 
 
 NS_ASSUME_NONNULL_END

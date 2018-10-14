@@ -12,47 +12,60 @@
 
 @implementation ThemesViewController
 
+- (Theme *)model {
+    Theme *themeModel = [[Theme alloc] init];
+    return [themeModel autorelease];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupUI];
+    self.view.backgroundColor = UINavigationBar.appearance.backgroundColor;
 }
 
-- (void) setupUI {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self animatedButtonsAppearance];
+}
+
+- (void)animatedButtonsAppearance {
     for (UIButton* button in [self buttons]) {
-        button.layer.cornerRadius = 8;
-        button.backgroundColor = UIColor.lightGrayColor;
+        button.transform = CGAffineTransformScale(button.transform, 0.1, 0.1);
     }
     
-    self.navigationController.title = @"Themes";
-
+    [UIView animateWithDuration:1 animations:^{
+        for (UIButton* button in [self buttons]) {
+            button.transform = CGAffineTransformScale(button.transform, 10, 10);
+        }
+    }];
 }
 
 - (void)changeTheme:(UIColor *)color {
     self.view.backgroundColor = color;
     self.navigationController.navigationBar.backgroundColor = color;
     [_delegate themesViewController:self didSelectTheme:color];
-    
 }
 
 - (IBAction)themeTapped:(UIButton *)sender {
-    UIColor* themeColor = [[Theme alloc] defaultTheme];
+    UIColor* theme = [[Theme alloc] defaultTheme];
     
     switch (sender.tag) {
         case 1:
-            themeColor = [[Theme alloc] redTheme];
+            theme = self.model.redTheme;
             break;
         case 2:
-            themeColor = [[Theme alloc] blueTheme];
+            theme = self.model.blueTheme;
             break;
         case 3:
-            themeColor = [[Theme alloc] darkTheme];
+            theme = self.model.darkTheme;
             break;
         default:
             break;
     }
-    [self changeTheme:themeColor];
+    [self changeTheme:theme];
     
+    [theme release];
 }
 
 - (IBAction)closeTapped:(UIBarButtonItem *)sender {
@@ -62,8 +75,8 @@
 
 - (void)dealloc {
     [_buttons release];
+    [_model release];
     [super dealloc];
-    NSLog(@"themeVC dealloced");
-
 }
+
 @end

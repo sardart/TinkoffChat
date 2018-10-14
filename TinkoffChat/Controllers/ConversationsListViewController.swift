@@ -20,42 +20,41 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     var offlineConversations = [Conversation]()
     let conversationsManager = ConversationsManager()
     
+    lazy var changeThemeWithClosure: (UIColor) -> () = { [weak self] (theme: UIColor) in
+        self?.logThemeChanging(selectedTheme: theme)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSavedTheme()
-        
         onlineConversations = conversationsManager.getConversations(count: 20, online: true)
         offlineConversations = conversationsManager.getConversations(count: 20, online: false)
-
     }
 
     func themesViewController(_ controller: ThemesViewController, didSelectTheme selectedTheme: UIColor) {
+        logThemeChanging(selectedTheme: selectedTheme)
+    }
+    
+    func logThemeChanging(selectedTheme: UIColor) {
         print(selectedTheme)
-        saveTheme(selectedTheme)
         setTheme(selectedTheme)
+        saveTheme(selectedTheme)
     }
     
     func setTheme(_ theme: UIColor) {
         UINavigationBar.appearance().backgroundColor = theme
-        
     }
     
     func saveTheme(_ theme: UIColor) {
         UserDefaults.standard.set(theme, forKey: "theme")
     }
-    
-    func loadSavedTheme() {
-        guard let theme = UserDefaults.standard.color(forKey: "theme") else { return }
-        setTheme(theme)
-        
-        // manual color changing cause navBar already appeared
-        self.navigationController?.navigationBar.backgroundColor = theme
-    }
+
     
     @IBAction func themesTapped(_ sender: Any) {
         let themesVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ThemesViewController") as! ThemesViewController
         themesVC.delegate = self
+        themesVC.title = "Themes"
+        
         let navController = UINavigationController(rootViewController: themesVC)
         self.present(navController, animated: true, completion: nil)
     }
@@ -65,6 +64,7 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
         let navController = UINavigationController(rootViewController: profileVC)
         self.present(navController, animated: true, completion: nil)
     }
+    
 }
 
 

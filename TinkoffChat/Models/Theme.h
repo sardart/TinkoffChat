@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Theme: NSObject
 
-@property (strong,nonatomic) UIColor* defaultTheme;
-@property (strong,nonatomic) UIColor* redTheme;
-@property (strong,nonatomic) UIColor* blueTheme;
-@property (strong,nonatomic) UIColor* darkTheme;
+@property (strong, nonatomic, readonly) UIColor* defaultTheme;
+@property (strong, nonatomic, readonly) UIColor* redTheme;
+@property (strong, nonatomic, readonly) UIColor* blueTheme;
+@property (strong, nonatomic, readonly) UIColor* darkTheme;
 
 @end
 

@@ -54,7 +54,6 @@ class ConversationListTableViewCell: UITableViewCell, ConversationCellConfigurat
     var hasUnreadMessages: Bool = true
     
     
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!

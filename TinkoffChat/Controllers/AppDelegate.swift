@@ -16,9 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        loadSavedTheme()
         return true
     }
 
+    func loadSavedTheme() {
+        guard let theme = UserDefaults.standard.color(forKey: "theme") else { return }
+        UINavigationBar.appearance().backgroundColor = theme
+    }
 
 }
 

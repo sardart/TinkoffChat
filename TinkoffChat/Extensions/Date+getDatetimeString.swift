@@ -13,7 +13,6 @@ extension Date {
         guard let date = date else { return "" }
         
         let dateFormatter = DateFormatter()
-
         if Calendar.current.isDateInToday(date) {
             dateFormatter.dateFormat = "HH:mm"
         } else {

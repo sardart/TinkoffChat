@@ -9,6 +9,7 @@
 #import "Theme.h"
 
 @implementation Theme: NSObject
+
 - (UIColor *)defaultTheme {
     return [UIColor whiteColor];
 }
