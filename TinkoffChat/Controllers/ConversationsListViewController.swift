@@ -38,6 +38,7 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     
     func setTheme(_ theme: UIColor) {
         UINavigationBar.appearance().backgroundColor = theme
+        
     }
     
     func saveTheme(_ theme: UIColor) {
@@ -47,6 +48,9 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     func loadSavedTheme() {
         guard let theme = UserDefaults.standard.color(forKey: "theme") else { return }
         setTheme(theme)
+        
+        // manual color changing cause navBar already appeared
+        self.navigationController?.navigationBar.backgroundColor = theme
     }
     
     @IBAction func themesTapped(_ sender: Any) {

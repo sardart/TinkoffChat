@@ -10,8 +10,6 @@
 #import "Theme.h"
 
 
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class ThemesViewController;
@@ -29,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)themeTapped:(UIButton *)sender;
 - (IBAction)closeTapped:(UIBarButtonItem *)sender;
 
+- (void) setupUI;
 - (void)changeTheme:(UIColor *)color;
 
 @end

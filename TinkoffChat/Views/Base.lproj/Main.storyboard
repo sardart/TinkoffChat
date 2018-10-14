@@ -102,7 +102,7 @@
                         <viewLayoutGuide key="safeArea" id="RVP-NE-laa"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="ce2-CY-SOy">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Zrd-ig-b9V">
+                        <barButtonItem key="leftBarButtonItem" title="Themes" id="Zrd-ig-b9V">
                             <connections>
                                 <action selector="themesTapped:" destination="zUh-rX-0Bd" id="c7A-GZ-MFy"/>
                             </connections>
@@ -298,9 +298,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="theme1" destination="oKz-Od-a93" id="JrA-Wt-0ic"/>
-                        <outlet property="theme2" destination="srp-tX-FY9" id="Ewz-PY-9gB"/>
-                        <outlet property="theme3" destination="AVp-35-UPN" id="EFE-zK-FU3"/>
                         <outletCollection property="buttons" destination="amO-xN-NWE" id="5Gu-yX-mlU"/>
                         <outletCollection property="buttons" destination="oKz-Od-a93" id="pf7-1T-uf9"/>
                         <outletCollection property="buttons" destination="srp-tX-FY9" id="ESk-ci-s9B"/>

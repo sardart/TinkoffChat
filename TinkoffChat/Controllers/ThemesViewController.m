@@ -10,26 +10,28 @@
 #import <Foundation/Foundation.h>
 
 
-
-
-@interface ThemesViewController ()
-
-@property (retain, nonatomic) IBOutlet UIButton *theme1;
-@property (retain, nonatomic) IBOutlet UIButton *theme2;
-@property (retain, nonatomic) IBOutlet UIButton *theme3;
-
-
-@end
-
 @implementation ThemesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupUI];
+}
+
+- (void) setupUI {
     for (UIButton* button in [self buttons]) {
         button.layer.cornerRadius = 8;
-        button.backgroundColor = UIColor.grayColor;
+        button.backgroundColor = UIColor.lightGrayColor;
     }
+    
+    self.navigationController.title = @"Themes";
+
+}
+
+- (void)changeTheme:(UIColor *)color {
+    self.view.backgroundColor = color;
+    self.navigationController.navigationBar.backgroundColor = color;
+    [_delegate themesViewController:self didSelectTheme:color];
     
 }
 
@@ -49,24 +51,16 @@
         default:
             break;
     }
-    
     [self changeTheme:themeColor];
-}
-
-- (void)changeTheme:(UIColor *)color {
-    self.view.backgroundColor = color;
-    self.navigationController.navigationBar.backgroundColor = color;
-    [_delegate themesViewController:self didSelectTheme:color];
+    
 }
 
 - (IBAction)closeTapped:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 - (void)dealloc {
-    [_theme1 release];
-    [_theme2 release];
-    [_theme3 release];
     [_buttons release];
     [super dealloc];
     NSLog(@"themeVC dealloced");
