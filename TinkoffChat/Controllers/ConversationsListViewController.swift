@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationsListViewController: UIViewController {
+class ConversationsListViewController: UIViewController, ThemesViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -22,12 +22,45 @@ class ConversationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadSavedTheme()
+        
         onlineConversations = conversationsManager.getConversations(count: 20, online: true)
         offlineConversations = conversationsManager.getConversations(count: 20, online: false)
 
     }
 
-
+    func themesViewController(_ controller: ThemesViewController, didSelectTheme selectedTheme: UIColor) {
+        print(selectedTheme)
+        saveTheme(selectedTheme)
+        setTheme(selectedTheme)
+    }
+    
+    func setTheme(_ theme: UIColor) {
+        UINavigationBar.appearance().backgroundColor = theme
+    }
+    
+    func saveTheme(_ theme: UIColor) {
+        UserDefaults.standard.set(theme, forKey: "theme")
+    }
+    
+    func loadSavedTheme() {
+        guard let theme = UserDefaults.standard.color(forKey: "theme") else { return }
+        setTheme(theme)
+    }
+    
+    @IBAction func themesTapped(_ sender: Any) {
+        let themesVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ThemesViewController") as! ThemesViewController
+        themesVC.delegate = self
+        let navController = UINavigationController(rootViewController: themesVC)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    @IBAction func profileTapped(_ sender: Any) {
+        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        let navController = UINavigationController(rootViewController: profileVC)
+        self.present(navController, animated: true, completion: nil)
+    }
 }
 
 
@@ -70,13 +103,14 @@ extension ConversationsListViewController: UITableViewDataSource {
             return ""
         }
     }
-
+    
     
 }
 
 
 extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedCell = tableView.cellForRow(at: indexPath) as! ConversationListTableViewCell
         
@@ -89,6 +123,7 @@ extension ConversationsListViewController: UITableViewDelegate {
         }
         navigationController?.pushViewController(conversationVC, animated: true)
         
+        
     }
     
     
@@ -99,10 +134,6 @@ extension ConversationsListViewController: UITableViewDelegate {
     
 }
 
-
-extension ThemesViewControllerDelegate {
-    
-}
 
 
 

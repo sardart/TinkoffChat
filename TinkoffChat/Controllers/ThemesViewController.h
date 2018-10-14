@@ -7,25 +7,33 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSObject+Theme.h"
+#import "Theme.h"
 
 
 
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ThemesViewController;
+@protocol ThemesViewControllerDelegate <NSObject>
+- (void)themesViewController: (ThemesViewController *)controller didSelectTheme:(UIColor *)selectedTheme;
+@end
+
 
 @interface ThemesViewController : UIViewController
 
-@property (nonatomic, assign) id delegate;
-@property (nonatomic, assign) Theme* test;
+@property (nonatomic, weak) id<ThemesViewControllerDelegate> delegate;
+@property (nonatomic, retain, readwrite) Theme* model;
+@property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+
+- (IBAction)themeTapped:(UIButton *)sender;
+- (IBAction)closeTapped:(UIBarButtonItem *)sender;
+
+- (void)changeTheme:(UIColor *)color;
 
 @end
 
 
-@protocol ThemesViewControllerDelegate <NSObject>
-- (void)themesViewController: (ThemesViewController *)controller didSelectTheme:(UIColor *)selectedTheme;
 
-@end
 
 NS_ASSUME_NONNULL_END

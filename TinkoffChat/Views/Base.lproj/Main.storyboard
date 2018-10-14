@@ -104,12 +104,12 @@
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="ce2-CY-SOy">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="Zrd-ig-b9V">
                             <connections>
-                                <segue destination="Rxi-dU-BuR" kind="presentation" id="17q-el-tkD"/>
+                                <action selector="themesTapped:" destination="zUh-rX-0Bd" id="c7A-GZ-MFy"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="UeP-Wh-XR8">
                             <connections>
-                                <segue destination="3xa-mb-8Uh" kind="presentation" id="GUm-Lq-vEV"/>
+                                <action selector="profileTapped:" destination="zUh-rX-0Bd" id="CoG-Hg-IIx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -236,33 +236,47 @@
         <!--Themes View Controller-->
         <scene sceneID="fDp-5n-Jld">
             <objects>
-                <viewController id="hzN-1A-msc" customClass="ThemesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThemesViewController" id="hzN-1A-msc" customClass="ThemesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sf1-Sb-9KB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="RfY-6u-aXq">
-                                <rect key="frame" x="129.5" y="209" width="61" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RfY-6u-aXq">
+                                <rect key="frame" x="64" y="176" width="192" height="216"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKz-Od-a93">
-                                        <rect key="frame" x="0.0" y="0.0" width="61" height="30"/>
-                                        <state key="normal" title="Theme 1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amO-xN-NWE">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="amO-xN-NWE" secondAttribute="height" multiplier="4:1" id="4Ex-za-wcn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Default"/>
                                         <connections>
-                                            <action selector="theme1Tapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="Dz9-Nx-h6K"/>
+                                            <action selector="themeTapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="iAM-Da-T2G"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srp-tX-FY9">
-                                        <rect key="frame" x="0.0" y="60" width="61" height="30"/>
-                                        <state key="normal" title="Theme 2"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKz-Od-a93">
+                                        <rect key="frame" x="0.0" y="56" width="192" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Red"/>
                                         <connections>
-                                            <action selector="theme2Tapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="6Jr-eZ-c9m"/>
+                                            <action selector="themeTapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="x57-6z-ZYa"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVp-35-UPN">
-                                        <rect key="frame" x="0.0" y="120" width="61" height="30"/>
-                                        <state key="normal" title="Theme 3"/>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srp-tX-FY9">
+                                        <rect key="frame" x="0.0" y="112" width="192" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Blue"/>
                                         <connections>
-                                            <action selector="theme3Tapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="76c-ga-CyI"/>
+                                            <action selector="themeTapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="eD2-Pl-r0v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVp-35-UPN">
+                                        <rect key="frame" x="0.0" y="168" width="192" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Dark"/>
+                                        <connections>
+                                            <action selector="themeTapped:" destination="hzN-1A-msc" eventType="touchUpInside" id="cn6-mx-1ve"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -272,6 +286,7 @@
                         <constraints>
                             <constraint firstItem="RfY-6u-aXq" firstAttribute="centerX" secondItem="Sf1-Sb-9KB" secondAttribute="centerX" id="3V0-Fh-r8Q"/>
                             <constraint firstItem="RfY-6u-aXq" firstAttribute="centerY" secondItem="Sf1-Sb-9KB" secondAttribute="centerY" id="aYM-q9-V9j"/>
+                            <constraint firstItem="RfY-6u-aXq" firstAttribute="width" secondItem="Sf1-Sb-9KB" secondAttribute="width" multiplier="0.6" id="uoS-tm-Wd2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nKf-4z-6R8"/>
                     </view>
@@ -286,28 +301,32 @@
                         <outlet property="theme1" destination="oKz-Od-a93" id="JrA-Wt-0ic"/>
                         <outlet property="theme2" destination="srp-tX-FY9" id="Ewz-PY-9gB"/>
                         <outlet property="theme3" destination="AVp-35-UPN" id="EFE-zK-FU3"/>
+                        <outletCollection property="buttons" destination="amO-xN-NWE" id="5Gu-yX-mlU"/>
+                        <outletCollection property="buttons" destination="oKz-Od-a93" id="pf7-1T-uf9"/>
+                        <outletCollection property="buttons" destination="srp-tX-FY9" id="ESk-ci-s9B"/>
+                        <outletCollection property="buttons" destination="AVp-35-UPN" id="798-B0-Wcl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEQ-UE-HeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786.875" y="880.9859154929577"/>
+            <point key="canvasLocation" x="-81" y="857"/>
         </scene>
         <!--My Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Z8-FzR">
-                                <rect key="frame" x="16" y="80" width="288" height="288"/>
+                                <rect key="frame" x="16" y="36" width="288" height="288"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="height" multiplier="1:1" id="ooE-kF-Qf1"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SG-Vc-mz4">
-                                <rect key="frame" x="223.5" y="287.5" width="80.5" height="80.5"/>
+                                <rect key="frame" x="223.5" y="243.5" width="80.5" height="80.5"/>
                                 <color key="backgroundColor" red="0.24705882352941178" green="0.47058823529411764" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0SG-Vc-mz4" secondAttribute="height" multiplier="1:1" id="SqB-dY-nru"/>
@@ -332,13 +351,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artur Sardaryan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-e3-SPj">
-                                <rect key="frame" x="16" y="380" width="288" height="33.5"/>
+                                <rect key="frame" x="16" y="336" width="288" height="33.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love iOS Development, know C/C++/Obj C, Swift, Python, JS/HTML, will code for food" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-rh-sNZ">
-                                <rect key="frame" x="16" y="425.5" width="288" height="64.5"/>
+                                <rect key="frame" x="16" y="381.5" width="288" height="64.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -379,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809.375" y="-597.88732394366195"/>
+            <point key="canvasLocation" x="-81" y="-621"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B38-Je-YK5">
@@ -397,43 +416,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krH-4h-p96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1076.25" y="111.97183098591549"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2bS-We-bYu">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3xa-mb-8Uh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fFa-5I-dCm">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="l5c-hl-1YK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tlZ-Nx-Clm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="811.875" y="-598.94366197183103"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="CAo-5y-lFC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rxi-dU-BuR" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n8Z-hM-CAk">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hzN-1A-msc" kind="relationship" relationship="rootViewController" id="zPY-By-DLp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1uj-MM-7Hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="789.375" y="880.9859154929577"/>
+            <point key="canvasLocation" x="-928" y="111"/>
         </scene>
     </scenes>
     <resources>

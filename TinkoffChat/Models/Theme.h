@@ -1,5 +1,5 @@
 //
-//  NSObject+Theme.h
+//  Theme.h
 //  TinkoffChat
 //
 //  Created by Artur on 14/10/2018.
@@ -14,9 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Theme: NSObject
 
-@property (strong,nonatomic) UIColor* theme1;
-@property (strong,nonatomic) UIColor* theme2;
-@property (strong,nonatomic) UIColor* theme3;
+@property (strong,nonatomic) UIColor* defaultTheme;
+@property (strong,nonatomic) UIColor* redTheme;
+@property (strong,nonatomic) UIColor* blueTheme;
+@property (strong,nonatomic) UIColor* darkTheme;
 
 @end
 

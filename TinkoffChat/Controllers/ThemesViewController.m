@@ -7,6 +7,10 @@
 //
 
 #import "ThemesViewController.h"
+#import <Foundation/Foundation.h>
+
+
+
 
 @interface ThemesViewController ()
 
@@ -14,45 +18,56 @@
 @property (retain, nonatomic) IBOutlet UIButton *theme2;
 @property (retain, nonatomic) IBOutlet UIButton *theme3;
 
+
 @end
 
 @implementation ThemesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    for (UIButton* button in [self buttons]) {
+        button.layer.cornerRadius = 8;
+        button.backgroundColor = UIColor.grayColor;
+    }
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)themeTapped:(UIButton *)sender {
+    UIColor* themeColor = [[Theme alloc] defaultTheme];
+    
+    switch (sender.tag) {
+        case 1:
+            themeColor = [[Theme alloc] redTheme];
+            break;
+        case 2:
+            themeColor = [[Theme alloc] blueTheme];
+            break;
+        case 3:
+            themeColor = [[Theme alloc] darkTheme];
+            break;
+        default:
+            break;
+    }
+    
+    [self changeTheme:themeColor];
 }
-*/
-- (IBAction)theme1Tapped:(UIButton *)sender {
-    NSLog(@"theme 1 tapped");
+
+- (void)changeTheme:(UIColor *)color {
+    self.view.backgroundColor = color;
+    self.navigationController.navigationBar.backgroundColor = color;
+    [_delegate themesViewController:self didSelectTheme:color];
 }
-
-
-- (IBAction)theme2Tapped:(UIButton *)sender {
-}
-
-
-- (IBAction)theme3Tapped:(UIButton *)sender {
-}
-
 
 - (IBAction)closeTapped:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated: YES completion: NULL];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)dealloc {
     [_theme1 release];
     [_theme2 release];
     [_theme3 release];
+    [_buttons release];
     [super dealloc];
     NSLog(@"themeVC dealloced");
 

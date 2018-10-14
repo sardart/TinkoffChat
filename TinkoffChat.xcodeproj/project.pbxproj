@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		752A4D4B2172A312002A2DC5 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 752A4D4A2172A312002A2DC5 /* ThemesViewController.m */; };
+		756DD029217371A200AF2E8E /* UserDefaults+SaveColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DD028217371A200AF2E8E /* UserDefaults+SaveColor.swift */; };
 		757500F62169388400F5A046 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757500F52169388400F5A046 /* ConversationsListViewController.swift */; };
 		757500F8216938A200F5A046 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757500F7216938A200F5A046 /* ConversationViewController.swift */; };
 		757500FA21693F7A00F5A046 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757500F921693F7A00F5A046 /* ConversationTableViewCell.swift */; };
@@ -23,13 +24,14 @@
 		758D7C93215808FE00DA3774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758D7C92215808FE00DA3774 /* Assets.xcassets */; };
 		758D7C96215808FE00DA3774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758D7C94215808FE00DA3774 /* LaunchScreen.storyboard */; };
 		758D7CA3215821E100DA3774 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D7CA2215821E100DA3774 /* AppConfiguration.swift */; };
-		75BF35D72172B64D00B2DBF9 /* NSObject+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BF35D62172B64D00B2DBF9 /* NSObject+Theme.m */; };
+		75BF35D72172B64D00B2DBF9 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BF35D62172B64D00B2DBF9 /* Theme.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		752A4D482172A312002A2DC5 /* TinkoffChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinkoffChat-Bridging-Header.h"; sourceTree = "<group>"; };
 		752A4D492172A312002A2DC5 /* ThemesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewController.h; sourceTree = "<group>"; };
 		752A4D4A2172A312002A2DC5 /* ThemesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewController.m; sourceTree = "<group>"; };
+		756DD028217371A200AF2E8E /* UserDefaults+SaveColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SaveColor.swift"; sourceTree = "<group>"; };
 		757500F52169388400F5A046 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		757500F7216938A200F5A046 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		757500F921693F7A00F5A046 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -47,8 +49,8 @@
 		758D7C95215808FE00DA3774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		758D7C97215808FE00DA3774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		758D7CA2215821E100DA3774 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		75BF35D52172B64D00B2DBF9 /* NSObject+Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Theme.h"; sourceTree = "<group>"; };
-		75BF35D62172B64D00B2DBF9 /* NSObject+Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Theme.m"; sourceTree = "<group>"; };
+		75BF35D52172B64D00B2DBF9 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		75BF35D62172B64D00B2DBF9 /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,8 @@
 				757500FF21695C7000F5A046 /* Conversation.swift */,
 				7575010121695D0F00F5A046 /* ConversationsManager.swift */,
 				75750105216A30C600F5A046 /* Message.swift */,
-				75BF35D52172B64D00B2DBF9 /* NSObject+Theme.h */,
-				75BF35D62172B64D00B2DBF9 /* NSObject+Theme.m */,
+				75BF35D52172B64D00B2DBF9 /* Theme.h */,
+				75BF35D62172B64D00B2DBF9 /* Theme.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -142,6 +144,7 @@
 			children = (
 				757500FD2169589F00F5A046 /* Date+getDatetimeString.swift */,
 				75750107216A47C600F5A046 /* TableView+Scrolls.swift */,
+				756DD028217371A200AF2E8E /* UserDefaults+SaveColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				756DD029217371A200AF2E8E /* UserDefaults+SaveColor.swift in Sources */,
 				7575010021695C7000F5A046 /* Conversation.swift in Sources */,
 				757500FE2169589F00F5A046 /* Date+getDatetimeString.swift in Sources */,
 				7575010221695D0F00F5A046 /* ConversationsManager.swift in Sources */,
@@ -225,7 +229,7 @@
 				758D7C8E215808FD00DA3774 /* ProfileViewController.swift in Sources */,
 				757500FA21693F7A00F5A046 /* ConversationTableViewCell.swift in Sources */,
 				75750106216A30C600F5A046 /* Message.swift in Sources */,
-				75BF35D72172B64D00B2DBF9 /* NSObject+Theme.m in Sources */,
+				75BF35D72172B64D00B2DBF9 /* Theme.m in Sources */,
 				758D7CA3215821E100DA3774 /* AppConfiguration.swift in Sources */,
 				75750108216A47C600F5A046 /* TableView+Scrolls.swift in Sources */,
 				75750104216A255500F5A046 /* ConversationListTableViewCell.swift in Sources */,
