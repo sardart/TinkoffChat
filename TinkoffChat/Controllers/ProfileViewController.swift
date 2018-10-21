@@ -9,8 +9,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, DataManagerDelegate {
-    @IBOutlet var aboutMeTextView: UITextView!
     
+    @IBOutlet var aboutMeTextView: UITextView!
     @IBOutlet var operationButton: UIButton!
     @IBOutlet var gcdButton: UIButton!
     @IBOutlet var nameTextField: UITextField!
@@ -25,11 +25,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var gcdDataManager = GCDDataManager()
     var operationDataManager = OperationDataManager()
     
-    
     var initialImage = UIImage(named: "placeholder-user")
     var initialName = "Artur Sardaryan"
     var initailAboutMe = "iOS Developer.\nWill code for food."
-    
     
     var nameChanged = false
     var aboutMeChanged = false
@@ -45,7 +43,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        
         setupViews()
         
         loadSavedImage()
@@ -58,25 +55,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         operationDataManager.delegate = self
         
         configNormalMode()
-        
-        
-    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.view.frame.origin.y = -keyboardRectangle.height
-        }
-        
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        self.view.frame.origin.y = 0
     }
     
     func setupViews() {
@@ -97,6 +76,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    // MARK: text input
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.view.frame.origin.y = -keyboardRectangle.height
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        self.view.frame.origin.y = 0
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if savingDissabled && textField.text != self.initialName {
@@ -106,15 +98,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if savingDissabled && self.aboutMeTextView.text != self.initailAboutMe {
-            enableSaving()
-        }
         if text == "\n" {
             textView.resignFirstResponder()
+            if savingDissabled && self.aboutMeTextView.text != self.initailAboutMe {
+                enableSaving()
+            }
             return false
         }
         return true
     }
+    
+    // MARK: editing mode
     
     func configNormalMode() {
         gcdButton.isHidden = true
@@ -155,33 +149,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         operationButton.isEnabled = true
     }
     
-    @IBAction func editTapped(_ sender: UIButton) {
-        configEditMode()
-    }
-    
-    @IBAction func choosePhotoTapped(_ sender: UIButton) {
-        showActionSheet()
-        
-    }
-    
-    func showActionSheet() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let takePhotoAction = UIAlertAction(title: "Take photo", style: .default) { (action) in
-            self.takePhoto()
-        }
-        let openGalleryAction = UIAlertAction(title: "Choose from Gallery", style: .default) { (action) in
-            self.openGallery()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        actionSheet.addAction(takePhotoAction)
-        actionSheet.addAction(openGalleryAction)
-        actionSheet.addAction(cancelAction)
-        
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-    
+    // MARK: profile photo editing
     
     func takePhoto() {
         if savingDissabled {
@@ -211,6 +179,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: data saving
+    
     func saveData(with dataManager: DataManager) {
         if let name = nameTextField.text,
             name != initialName {
@@ -234,9 +204,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             showAlert(title: "Success", message: "Data successfully saved", success: true, sender: dataManager)
         }
         
-        
     }
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    // MARK: loading saved data
     
     func loadSavedText() {
         DispatchQueue.main.async {
@@ -261,11 +236,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
+    // MARK: @IBActions
+
     @IBAction func closeTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -277,6 +249,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func GCDTapped(_ sender: Any) {
         saveData(with: gcdDataManager)
     }
+    
+    @IBAction func editTapped(_ sender: UIButton) {
+        configEditMode()
+    }
+    
+    @IBAction func choosePhotoTapped(_ sender: UIButton) {
+        showActionSheet()
+    }
+    
+    // MARK: alerts
     
     func showAlert(title: String, message: String, success: Bool, sender: DataManager) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -297,9 +279,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.present(alertController, animated: true, completion: nil)
     }
     
-    deinit {
-        buttons = nil;
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let takePhotoAction = UIAlertAction(title: "Take photo", style: .default) { (action) in
+            self.takePhoto()
+        }
+        let openGalleryAction = UIAlertAction(title: "Choose from Gallery", style: .default) { (action) in
+            self.openGallery()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actionSheet.addAction(takePhotoAction)
+        actionSheet.addAction(openGalleryAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
+    
+
 }
 
 

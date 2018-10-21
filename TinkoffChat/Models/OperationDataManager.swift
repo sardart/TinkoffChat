@@ -24,6 +24,7 @@ class OperationDataManager: DataManager {
         let savingOperation = SavingOperation(image: image, path: path)
         
         let finishedOperation = FinishingOperation(savingOperation: savingOperation, delegate: delegate, sender: self)
+        
         finishedOperation.addDependency(savingOperation)
 
         savingOperation.completionBlock = {
