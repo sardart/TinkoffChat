@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         setupViews()
-
+        
         loadSavedImage()
         loadSavedText()
         
@@ -232,27 +232,31 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         } else {
             showAlert(title: "Success", message: "Data successfully saved", success: true, sender: dataManager)
         }
-
+        
         
     }
-
+    
     
     func loadSavedText() {
-        if let name = gcdDataManager.loadText(key: "name") {
-            self.nameTextField.text = name
-            self.initialName = name
-        }
-        if let aboutMe = gcdDataManager.loadText(key: "aboutMe") {
-            self.aboutMeTextView.text = aboutMe
-            self.initailAboutMe = aboutMe
+        DispatchQueue.main.async {
+            if let name = self.gcdDataManager.loadText(key: "name") {
+                self.nameTextField.text = name
+                self.initialName = name
+            }
+            if let aboutMe = self.gcdDataManager.loadText(key: "aboutMe") {
+                self.aboutMeTextView.text = aboutMe
+                self.initailAboutMe = aboutMe
+            }
         }
     }
     
     func loadSavedImage() {
-        let filename = getDocumentsDirectory().appendingPathComponent("avatar.png")
-        if let image = gcdDataManager.loadImage(path: filename) {
-            myPhoto.image = image
-            initialImage = image
+        DispatchQueue.main.async {
+            let filename = self.getDocumentsDirectory().appendingPathComponent("avatar.png")
+            if let image = self.gcdDataManager.loadImage(path: filename) {
+                self.myPhoto.image = image
+                self.initialImage = image
+            }
         }
     }
     
