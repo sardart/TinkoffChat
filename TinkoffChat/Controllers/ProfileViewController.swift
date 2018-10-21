@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var imagePicker = UIImagePickerController()
     var gcdDataManager = GCDDataManager()
+    var operationDataManager = OperationDataManager()
     
     
     var initialImage = UIImage(named: "placeholder-user")
@@ -54,6 +55,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         nameTextField.delegate = self
         aboutMeTextView.delegate = self
         gcdDataManager.delegate = self
+        operationDataManager.delegate = self
         
         configNormalMode()
         
@@ -96,15 +98,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if savingDissabled {
+        textField.resignFirstResponder()
+        if savingDissabled && textField.text != self.initialName {
             enableSaving()
         }
-        textField.resignFirstResponder()
         return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if savingDissabled {
+        if savingDissabled && self.aboutMeTextView.text != self.initailAboutMe {
             enableSaving()
         }
         if text == "\n" {
@@ -225,7 +227,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             initialImage != image {
             activityIndicator.startAnimating()
             disableSaving()
-            print("saving image")
             initialImage = image
             let filename = self.getDocumentsDirectory().appendingPathComponent("avatar.png")
             dataManager.saveImage(image, path: filename)
@@ -270,7 +271,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func operationTapped(_ sender: Any) {
-        
+        saveData(with: operationDataManager)
     }
     
     @IBAction func GCDTapped(_ sender: Any) {

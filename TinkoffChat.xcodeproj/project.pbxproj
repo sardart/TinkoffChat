@@ -27,6 +27,7 @@
 		758D7CA3215821E100DA3774 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D7CA2215821E100DA3774 /* AppConfiguration.swift */; };
 		75B68CFB217CD22300565273 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B68CFA217CD22300565273 /* GCDDataManager.swift */; };
 		75B68CFD217CD24500565273 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B68CFC217CD24500565273 /* OperationDataManager.swift */; };
+		75B68CFF217CFBA800565273 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B68CFE217CFBA800565273 /* DataManager.swift */; };
 		75BF35D72172B64D00B2DBF9 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BF35D62172B64D00B2DBF9 /* Theme.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		758D7CA2215821E100DA3774 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		75B68CFA217CD22300565273 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		75B68CFC217CD24500565273 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
+		75B68CFE217CFBA800565273 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		75BF35D52172B64D00B2DBF9 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		75BF35D62172B64D00B2DBF9 /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				75BF35D62172B64D00B2DBF9 /* Theme.m */,
 				75B68CFA217CD22300565273 /* GCDDataManager.swift */,
 				75B68CFC217CD24500565273 /* OperationDataManager.swift */,
+				75B68CFE217CFBA800565273 /* DataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				75750108216A47C600F5A046 /* TableView+Scrolls.swift in Sources */,
 				75750104216A255500F5A046 /* ConversationListTableViewCell.swift in Sources */,
 				756DD02B217396F300AF2E8E /* ThemesViewControllerSwift.swift in Sources */,
+				75B68CFF217CFBA800565273 /* DataManager.swift in Sources */,
 				757500F62169388400F5A046 /* ConversationsListViewController.swift in Sources */,
 				758D7C8C215808FD00DA3774 /* AppDelegate.swift in Sources */,
 				752A4D4B2172A312002A2DC5 /* ThemesViewController.m in Sources */,
