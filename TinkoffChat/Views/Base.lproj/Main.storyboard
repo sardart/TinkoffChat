@@ -352,10 +352,11 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SG-Vc-mz4">
-                                <rect key="frame" x="223.5" y="243.5" width="80.5" height="80.5"/>
+                                <rect key="frame" x="224" y="244" width="80" height="80"/>
                                 <color key="backgroundColor" red="0.24705882352941178" green="0.47058823529411764" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0SG-Vc-mz4" secondAttribute="height" multiplier="1:1" id="SqB-dY-nru"/>
+                                    <constraint firstAttribute="width" constant="80" id="X1R-z8-HZy"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="18" minY="18" maxX="18" maxY="18"/>
                                 <state key="normal" image="slr-camera-2-xxl"/>
@@ -363,49 +364,83 @@
                                     <action selector="choosePhotoTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gj-qd-iC9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-G2-Yfa">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5rM-Rr-CpK">
                                 <rect key="frame" x="16" y="502" width="288" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Kyc-2B-fF3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <state key="normal" title="Edit Profile">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="editTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dFw-DV-8dh"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artur Sardaryan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-e3-SPj">
-                                <rect key="frame" x="16" y="336" width="288" height="33.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-G2-Yfa">
+                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Kyc-2B-fF3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="GCD">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="GCDTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lpg-dW-mI6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLR-T1-1Dl">
+                                        <rect key="frame" x="101.5" y="0.0" width="85" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="eZ2-hJ-r63"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Operation">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="operationTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kac-kt-Rds"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6V-fq-7fN">
+                                        <rect key="frame" x="202.5" y="0.0" width="85.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="Edit">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y5L-e8-8Ws"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Artur Sardaryan" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EJ7-1r-qyU">
+                                <rect key="frame" x="16" y="336" width="288" height="21"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love iOS Development, know C/C++/Obj C, Swift, Python, JS/HTML, will code for food" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-rh-sNZ">
-                                <rect key="frame" x="16" y="381.5" width="288" height="64.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AGv-DU-CCk">
+                                <rect key="frame" x="12" y="369" width="296" height="121"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="P19-Xb-H2z">
+                                <rect key="frame" x="141.5" y="265.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="P19-Xb-H2z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3OW-zT-Uey"/>
                             <constraint firstItem="0SG-Vc-mz4" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" id="5Is-ZJ-fer"/>
-                            <constraint firstItem="zqb-e3-SPj" firstAttribute="top" secondItem="R0E-Z8-FzR" secondAttribute="bottom" constant="12" id="74T-3k-MJA"/>
-                            <constraint firstItem="fYX-G2-Yfa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="BiQ-Eh-YZR"/>
-                            <constraint firstItem="zqb-e3-SPj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="H4f-Xm-64M"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fYX-G2-Yfa" secondAttribute="trailing" constant="16" id="O1z-W4-P6B"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t0U-rh-sNZ" secondAttribute="trailing" constant="16" id="RTi-Pe-AiU"/>
+                            <constraint firstItem="P19-Xb-H2z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Wi-Oo-HEP"/>
+                            <constraint firstItem="EJ7-1r-qyU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Gya-tJ-48z"/>
+                            <constraint firstItem="AGv-DU-CCk" firstAttribute="top" secondItem="EJ7-1r-qyU" secondAttribute="bottom" constant="12" id="HKc-z4-gRh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5rM-Rr-CpK" secondAttribute="trailing" constant="16" id="KT6-cB-V2n"/>
+                            <constraint firstItem="AGv-DU-CCk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="LyS-PQ-43v"/>
+                            <constraint firstItem="EJ7-1r-qyU" firstAttribute="top" secondItem="R0E-Z8-FzR" secondAttribute="bottom" constant="12" id="Ww8-wT-Ndy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AGv-DU-CCk" secondAttribute="trailing" constant="12" id="azc-zD-xfg"/>
+                            <constraint firstItem="5rM-Rr-CpK" firstAttribute="top" secondItem="AGv-DU-CCk" secondAttribute="bottom" constant="12" id="gz6-Cm-g7B"/>
                             <constraint firstItem="R0E-Z8-FzR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="jG5-6r-TuC"/>
                             <constraint firstItem="0SG-Vc-mz4" firstAttribute="bottom" secondItem="R0E-Z8-FzR" secondAttribute="bottom" id="m6S-xO-ZF0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EJ7-1r-qyU" secondAttribute="trailing" constant="16" id="mOv-B2-KlZ"/>
                             <constraint firstItem="R0E-Z8-FzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mWu-5D-Uf8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R0E-Z8-FzR" secondAttribute="trailing" constant="16" id="oKr-k8-abk"/>
-                            <constraint firstItem="0SG-Vc-mz4" firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="width" multiplier="0.28" id="ove-pS-Hr0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fYX-G2-Yfa" secondAttribute="bottom" constant="16" id="qz7-8g-o7C"/>
-                            <constraint firstItem="t0U-rh-sNZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wzb-70-YEx"/>
-                            <constraint firstItem="t0U-rh-sNZ" firstAttribute="top" secondItem="zqb-e3-SPj" secondAttribute="bottom" constant="12" id="yF6-pU-Y5w"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zqb-e3-SPj" secondAttribute="trailing" constant="16" id="zeA-gJ-OXm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5rM-Rr-CpK" secondAttribute="bottom" constant="16" id="tBq-oe-R39"/>
+                            <constraint firstItem="5rM-Rr-CpK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yEt-0J-WXk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -417,14 +452,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="aboutMeTextView" destination="AGv-DU-CCk" id="KZB-CE-y7N"/>
+                        <outlet property="activityIndicator" destination="P19-Xb-H2z" id="W1c-3v-bWN"/>
                         <outlet property="choosePhotoButton" destination="0SG-Vc-mz4" id="Eaj-3z-Llq"/>
-                        <outlet property="editButton" destination="fYX-G2-Yfa" id="QMX-JK-vOp"/>
+                        <outlet property="contentView" destination="8bC-Xf-vdC" id="XHy-gu-uX3"/>
+                        <outlet property="editButton" destination="z6V-fq-7fN" id="gWI-5r-Uao"/>
+                        <outlet property="gcdButton" destination="fYX-G2-Yfa" id="IoG-NQ-MMS"/>
                         <outlet property="myPhoto" destination="R0E-Z8-FzR" id="O2m-pC-dnE"/>
+                        <outlet property="nameTextField" destination="EJ7-1r-qyU" id="APi-7T-Yft"/>
+                        <outlet property="operationButton" destination="SLR-T1-1Dl" id="Yq0-Tt-2jE"/>
+                        <outletCollection property="buttons" destination="fYX-G2-Yfa" collectionClass="NSMutableArray" id="UQV-Hw-YHa"/>
+                        <outletCollection property="buttons" destination="SLR-T1-1Dl" collectionClass="NSMutableArray" id="oMP-Cm-h6l"/>
+                        <outletCollection property="buttons" destination="z6V-fq-7fN" collectionClass="NSMutableArray" id="0e9-0Y-dsA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-81" y="-621"/>
+            <point key="canvasLocation" x="-82.5" y="-621.12676056338034"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B38-Je-YK5">
