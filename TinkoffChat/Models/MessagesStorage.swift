@@ -20,8 +20,14 @@ class MessagesStorage {
         return messages
     }
     
-    static func saveMessages(from userName: String, messages: [Message]) {
-        MessagesStorage.messages[userName] = messages
+    
+    
+    static func addMessage(from userName: String, message: Message) {
+        if let _ = MessagesStorage.getMessages(from: userName) {
+            MessagesStorage.messages[userName]?.append(message)
+        } else {
+            MessagesStorage.messages[userName] = [message]
+        }
     }
     
     

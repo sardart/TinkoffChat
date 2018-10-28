@@ -124,7 +124,9 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
         session.delegate = self
         sessions[peerID.displayName] = session
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
-        delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
+        
+        let userName = (info as NSDictionary?)?.value(forKey: "userName") as? String ?? peerID.displayName
+        delegate?.didFoundUser(userID: peerID.displayName, userName: userName)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -144,7 +146,7 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case MCSessionState.connected:
             print("connected to session: \(session)")
-//            delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
+            delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
         case MCSessionState.connecting:
             print("start connecting to session: \(session)")
         default:

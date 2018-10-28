@@ -19,7 +19,6 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     var onlineConversations = [Conversation]()
     var offlineConversations = [Conversation]()
     let conversationsManager = ConversationsManager()
-    
     var communicationManager = CommunicationManager()
     
     
@@ -32,11 +31,17 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
         
         communicationManager.usersDelegate = self
         
-
-//        onlineConversations = conversationsManager.getConversations(count: 20, online: true)
-//        offlineConversations = conversationsManager.getConversations(count: 20, online: false)
+        
+        //        onlineConversations = conversationsManager.getConversations(count: 20, online: true)
+        //        offlineConversations = conversationsManager.getConversations(count: 20, online: false)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.updateList()
+    }
+    
     func themesViewController(_ controller: ThemesViewController, didSelectTheme selectedTheme: UIColor) {
         logThemeChanging(selectedTheme: selectedTheme)
     }
@@ -54,7 +59,7 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     func saveTheme(_ theme: UIColor) {
         UserDefaults.standard.set(theme, forKey: "theme")
     }
-
+    
     
     @IBAction func themesTapped(_ sender: Any) {
         let themesVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ThemesViewController") as! ThemesViewController
@@ -126,14 +131,22 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         
         let conversationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
+        
+        switch indexPath.section {
+        case 0:
+            conversationVC.isOnline = true
+            onlineConversations[indexPath.row].hasUnreadMessages = false
+        case 1:
+            conversationVC.isOnline = false
+            offlineConversations[indexPath.row].hasUnreadMessages = false
+        default:
+            break
+        }
+        
         conversationVC.userName = selectedCell.name
         conversationVC.communicationManager = communicationManager
         communicationManager.chatDelegate = conversationVC
         
-        if let lastMessage = selectedCell.message {
-            conversationVC.messages = conversationsManager.getMessages(count: 50)
-            conversationVC.messages.append(Message(messageText: lastMessage, type: .incoming))
-        }
         navigationController?.pushViewController(conversationVC, animated: true)
         
         
@@ -142,14 +155,43 @@ extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
+    
     
 }
 
 
 extension ConversationsListViewController: CommunicationManagerUsersDelegate {
+    
+    func dateAndName(_ left: Conversation, _ right: Conversation) -> Bool {
+        guard let leftDate = left.date,
+            let rightDate = right.date else {
+                return left.name < right.name
+                
+        }
+        return leftDate < rightDate
+    }
+    
+    func updateConversations(_ conversations: [Conversation]) {
+        for conversation in conversations {
+            guard let lastMessage = MessagesStorage.getMessages(from: conversation.name)?.last else {
+                conversation.hasUnreadMessages = false
+                continue
+            }
+            conversation.message = lastMessage.messageText
+            conversation.date = lastMessage.date
+        }
+    }
+    
     func updateList() {
-        self.tableView.reloadData()
+        updateConversations(self.onlineConversations)
+        updateConversations(self.offlineConversations)
+        
+        self.onlineConversations = self.onlineConversations.sorted(by: dateAndName)
+        self.offlineConversations = self.offlineConversations.sorted(by: dateAndName)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
 }

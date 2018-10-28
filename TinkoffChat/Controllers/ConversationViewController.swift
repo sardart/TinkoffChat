@@ -9,7 +9,7 @@
 import UIKit
 
 class ConversationViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet var sendMessageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextField: UITextField!
@@ -27,6 +27,8 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     var messages = [Message]()
     var communicationManager: CommunicationManager!
+    var isOnline: Bool!
+    
     
     var userName: String = "" {
         didSet {
@@ -34,21 +36,21 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        MessagesStorage.saveMessages(from: userName, messages: self.messages)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.tableView.addGestureRecognizer(tapGR)
+        
         messageTextField.delegate = self
         
         if let messages = MessagesStorage.getMessages(from: userName) {
             self.messages = messages
+        }
+        if !isOnline {
+            userBecomeOffline()
         }
         
         if messages.isEmpty {
@@ -67,6 +69,10 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        messageTextField.resignFirstResponder()
+    }
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -83,17 +89,24 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         tableView.scrollToBottom(animated: false)
     }
-
+    
     @IBAction func sendTapped(_ sender: Any) {
-        guard let text = messageTextField.text else { return }
+        guard let text = messageTextField.text,
+            text != "" else { return }
         
-        let message = Message(messageText: text, date: Date.init(timeIntervalSinceNow: 0), type: .outgoing)
-        self.messages.append(message)
-        self.tableView.reloadData()
+        messageTextField.text = ""
         
         communicationManager.communicator.sendMessage(string: text, to: userName) { (true, error) in
             self.showAlert(title: "Error", message: error?.localizedDescription)
         }
+        
+        let outgoingMessage = Message(messageText: text, date: Date.init(timeIntervalSinceNow: 0), type: .outgoing)
+        self.messages.append(outgoingMessage)
+        
+        self.tableView.reloadData()
+        self.tableView.scrollToBottom(animated: true)
+        
+        MessagesStorage.addMessage(from: userName, message: outgoingMessage)
     }
     
 }
@@ -127,15 +140,29 @@ extension ConversationViewController: UITableViewDelegate {
 
 extension ConversationViewController: CommunicationManagerChatDelegate {
     
-    func didRecieveMessage(text: String) {
+    func didRecieveMessage(message: Message) {
         DispatchQueue.main.async {
             if self.messages.isEmpty {
                 self.tableView.tableHeaderView = nil
             }
+            self.messages.append(message)
             
-            self.messages.append(Message(messageText: text, date: Date(timeIntervalSinceNow: 0), type: .incoming))
             self.tableView.reloadData()
             self.tableView.scrollToBottom(animated: true)
+        }
+    }
+    
+    func userBecomeOffline() {
+        DispatchQueue.main.async {
+            self.sendButton.isEnabled = false
+            self.sendButton.alpha = 0.5
+        }
+    }
+    
+    func userBecomeOnline() {
+        DispatchQueue.main.async {
+            self.sendButton.isEnabled = true
+            self.sendButton.alpha = 1
         }
     }
     

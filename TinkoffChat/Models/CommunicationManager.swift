@@ -20,7 +20,9 @@ protocol CommunicationManagerUsersDelegate {
 protocol CommunicationManagerChatDelegate {
     var userName: String {get}
     
-    func didRecieveMessage(text: String)
+    func didRecieveMessage(message: Message)
+    func userBecomeOffline()
+    func userBecomeOnline()
 }
 
 protocol CommunicationManagerConnectionsDelegate {
@@ -50,7 +52,7 @@ extension CommunicationManager: CommunicatorDelagate {
             if !usersDelegate!.onlineConversations.isEmpty {
                 for i in 0...usersDelegate!.onlineConversations.count - 1 {
                     let convarsation = usersDelegate!.onlineConversations[i]
-                    if convarsation.name == userID {
+                    if convarsation.name == userName {
                         return
                     }
                 }
@@ -59,7 +61,7 @@ extension CommunicationManager: CommunicatorDelagate {
             if !usersDelegate!.offlineConversations.isEmpty {
                 for i in 0...usersDelegate!.offlineConversations.count - 1 {
                     let convarsation = usersDelegate!.offlineConversations[i]
-                    if convarsation.name == userID {
+                    if convarsation.name == userName {
                         usersDelegate!.offlineConversations.remove(at: i)
                         convarsation.online = true
                         usersDelegate?.onlineConversations.append(convarsation)
@@ -69,8 +71,15 @@ extension CommunicationManager: CommunicatorDelagate {
                 }
             }
             
-            usersDelegate!.onlineConversations.append(Conversation(name: userName, message: nil, date: Date.init(timeIntervalSinceNow: 0), online: true, hasUnreadMessages: false))
+            let lastMessage = MessagesStorage.getMessages(from: userName)?.last?.messageText
+            let newConversations = Conversation(name: userName, message: lastMessage, date: nil, online: true, hasUnreadMessages: false)
+            
+            usersDelegate!.onlineConversations.append(newConversations)
             usersDelegate!.updateList()
+        }
+        
+        if userID == chatDelegate?.userName {
+            chatDelegate?.userBecomeOnline()
         }
     }
     
@@ -87,6 +96,10 @@ extension CommunicationManager: CommunicatorDelagate {
                 }
             }
         }
+        
+        if userID == chatDelegate?.userName {
+            chatDelegate?.userBecomeOffline()
+        }
     }
     
     func failedToStartBrowsingForUsers(error: Error) {
@@ -99,12 +112,15 @@ extension CommunicationManager: CommunicatorDelagate {
     
     func didRecieveMessage(text: String, fromUser: String, toUser: String) {
         
+        let incomingMessage = Message(messageText: text, date: Date.init(timeIntervalSinceNow: 0), type: .incoming)
+        MessagesStorage.addMessage(from: fromUser, message: incomingMessage)
+        
+        usersDelegate?.updateList()
         
         
         if toUser == communicator.myPeerID.displayName && fromUser == chatDelegate?.userName {
-            chatDelegate?.didRecieveMessage(text: text)
+            chatDelegate?.didRecieveMessage(message: incomingMessage)
         }
-        
         
     }
     
