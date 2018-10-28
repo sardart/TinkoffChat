@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7506A86F2185C55300B51E3E /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7506A86E2185C55300B51E3E /* MultipeerCommunicator.swift */; };
 		752A4D4B2172A312002A2DC5 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 752A4D4A2172A312002A2DC5 /* ThemesViewController.m */; };
 		756DD029217371A200AF2E8E /* UserDefaults+SaveColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DD028217371A200AF2E8E /* UserDefaults+SaveColor.swift */; };
 		756DD02B217396F300AF2E8E /* ThemesViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DD02A217396F300AF2E8E /* ThemesViewControllerSwift.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7506A86E2185C55300B51E3E /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
 		752A4D482172A312002A2DC5 /* TinkoffChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TinkoffChat-Bridging-Header.h"; sourceTree = "<group>"; };
 		752A4D492172A312002A2DC5 /* ThemesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewController.h; sourceTree = "<group>"; };
 		752A4D4A2172A312002A2DC5 /* ThemesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewController.m; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				75B68CFA217CD22300565273 /* GCDDataManager.swift */,
 				75B68CFC217CD24500565273 /* OperationDataManager.swift */,
 				75B68CFE217CFBA800565273 /* DataManager.swift */,
+				7506A86E2185C55300B51E3E /* MultipeerCommunicator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				757500FA21693F7A00F5A046 /* ConversationTableViewCell.swift in Sources */,
 				75750106216A30C600F5A046 /* Message.swift in Sources */,
 				75BF35D72172B64D00B2DBF9 /* Theme.m in Sources */,
+				7506A86F2185C55300B51E3E /* MultipeerCommunicator.swift in Sources */,
 				758D7CA3215821E100DA3774 /* AppConfiguration.swift in Sources */,
 				75750108216A47C600F5A046 /* TableView+Scrolls.swift in Sources */,
 				75750104216A255500F5A046 /* ConversationListTableViewCell.swift in Sources */,
