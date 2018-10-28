@@ -42,7 +42,6 @@ class MultipeerCommunicator: NSObject, Communicator {
         
         self.advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: ["userName" : myPeerID.displayName], serviceType: "tinkoff-chat")
         self.browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: "tinkoff-chat")
-        
         self.online = online
 
         super.init()
@@ -106,8 +105,8 @@ extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        if let _ = findSession(for: peerID.displayName) {
-            invitationHandler(false, nil)
+        if let session = findSession(for: peerID.displayName) {
+            invitationHandler(true, session)
         } else {
             let session = MCSession(peer: myPeerID)
             invitationHandler(true, session)
@@ -125,6 +124,7 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
         session.delegate = self
         sessions[peerID.displayName] = session
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
+        delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -143,11 +143,13 @@ extension MultipeerCommunicator: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case MCSessionState.connected:
-            delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
+            print("connected to session: \(session)")
+//            delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
         case MCSessionState.connecting:
             print("start connecting to session: \(session)")
         default:
             print("failed connecting to session: \(session)")
+//            delegate?.didLostUser(userID: peerID.displayName)
         }
     }
     

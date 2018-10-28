@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController {
+class ConversationViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var messageTextField: UITextField!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.tableFooterView = UIView()
@@ -33,6 +35,10 @@ class ConversationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        messageTextField.delegate = self
         
         if messages.isEmpty {
             let noMessagesLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
@@ -43,11 +49,13 @@ class ConversationViewController: UIViewController {
             tableView.tableHeaderView = noMessagesLabel
         }
         
-        communicationManager.communicator.sendMessage(string: "HELLO WORLD BITCH", to: userName) { (true, error) in
-        
-        }
-        
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -55,7 +63,13 @@ class ConversationViewController: UIViewController {
         tableView.scrollToBottom(animated: false)
     }
 
-
+    @IBAction func sendTapped(_ sender: Any) {
+        guard let text = messageTextField.text else { return }
+        communicationManager.communicator.sendMessage(string: text, to: userName) { (true, error) in
+            self.showAlert(title: "Error", message: error?.localizedDescription)
+        }
+    }
+    
 }
 
 
@@ -88,14 +102,16 @@ extension ConversationViewController: UITableViewDelegate {
 extension ConversationViewController: CommunicationManagerChatDelegate {
     
     func didRecieveMessage(text: String) {
-        if messages.isEmpty {
-            self.tableView.tableHeaderView = nil
-        }
+        print("GOT MESSAGE \(text)")
         
-        messages.append(Message(messageText: text, type: .incoming))
-        self.tableView.beginUpdates()
-        self.tableView.reloadRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
-        self.tableView.endUpdates()
+        DispatchQueue.main.async {
+            if self.messages.isEmpty {
+                self.tableView.tableHeaderView = nil
+            }
+            
+            self.messages.append(Message(messageText: text, date: Date(timeIntervalSinceNow: 0), type: .incoming))
+            self.tableView.reloadData()
+        }
     }
     
     

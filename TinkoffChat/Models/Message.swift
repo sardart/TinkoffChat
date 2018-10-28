@@ -27,5 +27,11 @@ class Message: MessageCellConfiguration {
         self.type = type
     }
     
+    init(messageText: String?, date: Date?, type: MessageType) {
+        self.messageText = messageText
+        self.date = date
+        self.type = type
+    }
+    
     
 }
