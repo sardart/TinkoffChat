@@ -281,6 +281,7 @@
                     <connections>
                         <outlet property="messageTextField" destination="dty-Td-GTB" id="OEP-jk-6RM"/>
                         <outlet property="sendButton" destination="39i-kL-1T8" id="w8H-Ts-14U"/>
+                        <outlet property="sendMessageViewBottomConstraint" destination="fXs-Qc-xc2" id="wgl-Em-fUT"/>
                         <outlet property="tableView" destination="6F2-Yx-w9j" id="7eK-9r-d8t"/>
                     </connections>
                 </viewController>

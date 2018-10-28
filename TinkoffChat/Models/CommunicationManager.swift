@@ -75,7 +75,7 @@ extension CommunicationManager: CommunicatorDelagate {
     }
     
     func didLostUser(userID: String) {
-        if usersDelegate != nil  &&  !usersDelegate!.offlineConversations.isEmpty {
+        if usersDelegate != nil  &&  !usersDelegate!.onlineConversations.isEmpty {
             for i in 0...usersDelegate!.onlineConversations.count - 1 {
                 let convarsation = usersDelegate!.onlineConversations[i]
                 if convarsation.name == userID {

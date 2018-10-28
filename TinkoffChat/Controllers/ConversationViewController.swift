@@ -10,6 +10,7 @@ import UIKit
 
 class ConversationViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var sendMessageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet weak var tableView: UITableView! {
@@ -33,12 +34,22 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        MessagesStorage.saveMessages(from: userName, messages: self.messages)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         messageTextField.delegate = self
+        
+        if let messages = MessagesStorage.getMessages(from: userName) {
+            self.messages = messages
+        }
         
         if messages.isEmpty {
             let noMessagesLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
@@ -56,6 +67,16 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.sendMessageViewBottomConstraint.constant = -keyboardRectangle.height
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        self.sendMessageViewBottomConstraint.constant = 0
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -65,6 +86,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func sendTapped(_ sender: Any) {
         guard let text = messageTextField.text else { return }
+        
+        let message = Message(messageText: text, date: Date.init(timeIntervalSinceNow: 0), type: .outgoing)
+        self.messages.append(message)
+        self.tableView.reloadData()
+        
         communicationManager.communicator.sendMessage(string: text, to: userName) { (true, error) in
             self.showAlert(title: "Error", message: error?.localizedDescription)
         }
@@ -102,8 +128,6 @@ extension ConversationViewController: UITableViewDelegate {
 extension ConversationViewController: CommunicationManagerChatDelegate {
     
     func didRecieveMessage(text: String) {
-        print("GOT MESSAGE \(text)")
-        
         DispatchQueue.main.async {
             if self.messages.isEmpty {
                 self.tableView.tableHeaderView = nil
@@ -111,6 +135,7 @@ extension ConversationViewController: CommunicationManagerChatDelegate {
             
             self.messages.append(Message(messageText: text, date: Date(timeIntervalSinceNow: 0), type: .incoming))
             self.tableView.reloadData()
+            self.tableView.scrollToBottom(animated: true)
         }
     }
     
