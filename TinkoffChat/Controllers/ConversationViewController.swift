@@ -23,17 +23,28 @@ class ConversationViewController: UIViewController {
     }
     
     var messages = [Message]()
+    var communicationManager: CommunicationManager!
+    
+    var userName: String = "" {
+        didSet {
+            self.title = userName
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if messages.isEmpty {
-            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-            titleLabel.text = "Not messages yet"
-            titleLabel.textColor = UIColor.darkGray
-            titleLabel.font = UIFont.systemFont(ofSize: 14)
-            titleLabel.textAlignment = .center
-            tableView.tableHeaderView = titleLabel
+            let noMessagesLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+            noMessagesLabel.text = "Not messages yet"
+            noMessagesLabel.textColor = UIColor.darkGray
+            noMessagesLabel.font = UIFont.systemFont(ofSize: 14)
+            noMessagesLabel.textAlignment = .center
+            tableView.tableHeaderView = noMessagesLabel
+        }
+        
+        communicationManager.communicator.sendMessage(string: "HELLO WORLD BITCH", to: userName) { (true, error) in
+        
         }
         
     }
@@ -71,5 +82,21 @@ extension ConversationViewController: UITableViewDataSource {
 }
 
 extension ConversationViewController: UITableViewDelegate {
+    
+}
+
+extension ConversationViewController: CommunicationManagerChatDelegate {
+    
+    func didRecieveMessage(text: String) {
+        if messages.isEmpty {
+            self.tableView.tableHeaderView = nil
+        }
+        
+        messages.append(Message(messageText: text, type: .incoming))
+        self.tableView.beginUpdates()
+        self.tableView.reloadRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
+        self.tableView.endUpdates()
+    }
+    
     
 }

@@ -103,22 +103,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="ce2-CY-SOy">
                         <leftBarButtonItems>
-                            <barButtonItem title="ObjC" id="Zrd-ig-b9V">
-                                <connections>
-                                    <action selector="themesTapped:" destination="zUh-rX-0Bd" id="c7A-GZ-MFy"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Swift" id="Sxj-9O-tuJ">
+                            <barButtonItem image="settings" id="Sxj-9O-tuJ">
                                 <connections>
                                     <segue destination="ajv-qm-4IB" kind="presentation" id="alY-jf-nRs"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="profile" id="UeP-Wh-XR8">
+                                <connections>
+                                    <action selector="profileTapped:" destination="zUh-rX-0Bd" id="CoG-Hg-IIx"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Profile" id="UeP-Wh-XR8">
-                            <connections>
-                                <action selector="profileTapped:" destination="zUh-rX-0Bd" id="CoG-Hg-IIx"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="connect" id="qVH-wu-byl"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="OSW-I1-m1b" id="dt2-3v-T7R"/>
@@ -127,6 +123,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esx-q3-ajz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-79" y="111"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zzp-5E-y4f">
+            <objects>
+                <viewController id="Hsb-mH-5X3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nWP-ni-dT6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="b0Z-Ga-q9e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ao9-95-aPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1439" y="-601"/>
         </scene>
         <!--Conversation View Controller-->
         <scene sceneID="jOP-gP-lcs">
@@ -605,7 +616,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="connect" width="38.400001525878906" height="38.400001525878906"/>
         <image name="placeholder-user" width="600" height="600"/>
+        <image name="profile" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="settings" width="38.400001525878906" height="38.400001525878906"/>
         <image name="slr-camera-2-xxl" width="256" height="256"/>
     </resources>
 </document>

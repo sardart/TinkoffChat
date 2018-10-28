@@ -20,6 +20,9 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     var offlineConversations = [Conversation]()
     let conversationsManager = ConversationsManager()
     
+    var communicationManager = CommunicationManager()
+    
+    
     lazy var changeThemeWithClosure: (UIColor) -> () = { [weak self] (theme: UIColor) in
         self?.logThemeChanging(selectedTheme: theme)
     }
@@ -27,8 +30,11 @@ class ConversationsListViewController: UIViewController, ThemesViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        onlineConversations = conversationsManager.getConversations(count: 20, online: true)
-        offlineConversations = conversationsManager.getConversations(count: 20, online: false)
+        communicationManager.usersDelegate = self
+        
+
+//        onlineConversations = conversationsManager.getConversations(count: 20, online: true)
+//        offlineConversations = conversationsManager.getConversations(count: 20, online: false)
     }
 
     func themesViewController(_ controller: ThemesViewController, didSelectTheme selectedTheme: UIColor) {
@@ -120,7 +126,10 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         
         let conversationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
-        conversationVC.title = selectedCell.name
+        conversationVC.userName = selectedCell.name
+        conversationVC.communicationManager = communicationManager
+        communicationManager.chatDelegate = conversationVC
+        
         if let lastMessage = selectedCell.message {
             conversationVC.messages = conversationsManager.getMessages(count: 50)
             conversationVC.messages.append(Message(messageText: lastMessage, type: .incoming))
@@ -130,11 +139,18 @@ extension ConversationsListViewController: UITableViewDelegate {
         
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
 
+    
+}
+
+
+extension ConversationsListViewController: CommunicationManagerUsersDelegate {
+    func updateList() {
+        self.tableView.reloadData()
+    }
     
 }
 

@@ -17,7 +17,10 @@ class ThemesViewControllerSwift: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UINavigationBar.appearance().backgroundColor
+        let color = UINavigationBar.appearance().backgroundColor
+        if let color = color {
+            self.view.backgroundColor = color
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

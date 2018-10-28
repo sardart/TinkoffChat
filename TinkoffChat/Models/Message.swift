@@ -19,6 +19,7 @@ enum MessageType {
 
 class Message: MessageCellConfiguration {
     var messageText: String?
+    var date: Date?
     var type: MessageType
     
     init(messageText: String?, type: MessageType) {

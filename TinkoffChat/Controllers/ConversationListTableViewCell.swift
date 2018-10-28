@@ -12,7 +12,7 @@ import UIKit
 
 class ConversationListTableViewCell: UITableViewCell, ConversationCellConfiguration {
     
-    var name: String? {
+    var name: String = "" {
         didSet {
             fullNameLabel.text = name
         }
