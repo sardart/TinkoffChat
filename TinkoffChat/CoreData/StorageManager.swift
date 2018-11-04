@@ -159,6 +159,3 @@ class StorageManager {
     }
     
 }
-
-
-extension AppUser
