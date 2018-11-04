@@ -14,21 +14,24 @@ class StorageManager {
     
     // MARK: - Properties
     
-    private var managedObjectModelName: String = "Storage"
+    static let shared = StorageManager()
+    
+    private let managedObjectModelName: String = "Storage"
+    private let dataModelExtension: String = "momd"
     
     // MARK: - Initialization
     
-    init() {}
-    
-    init(managedObjectModelName: String) {
-        self.managedObjectModelName = managedObjectModelName
-    }
+    private init() {}
     
     // MARK: - Core Data Stack
     
     private var storeURL: URL? {
         get {
-            guard let documentsDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else  { return nil }
+            guard let documentsDirURL = FileManager.default.urls(for: .documentDirectory,
+                                                                 in: .userDomainMask).first else  {
+                print("Error documentsDirURL")
+                return nil
+            }
             let url = documentsDirURL.appendingPathComponent("Store.sqlite")
             
             return url
@@ -39,7 +42,8 @@ class StorageManager {
     private var managedObjectModel: NSManagedObjectModel? {
         get {
             if _managedObjectModel == nil {
-                guard let modelURL = Bundle.main.url(forResource: managedObjectModelName, withExtension: "momd") else {
+                guard let modelURL = Bundle.main.url(forResource: self.managedObjectModelName,
+                                                     withExtension: self.dataModelExtension) else {
                     print("Model url is empty")
                     return nil
                 }
@@ -63,7 +67,7 @@ class StorageManager {
                 do {
                     try _persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType,
                                                                         configurationName: nil,
-                                                                        at: storeURL,
+                                                                        at: self.storeURL,
                                                                         options: nil)
                 } catch {
                     assert(false, "Error adding persistent store to coordinator: \(error)")
@@ -118,7 +122,7 @@ class StorageManager {
     private var saveContext: NSManagedObjectContext? {
         get {
             if _saveContext == nil {
-                guard let parentContext = self.masterContext else {
+                guard let parentContext = self.mainContext else {
                     print("No master context!")
                     return nil
                 }
