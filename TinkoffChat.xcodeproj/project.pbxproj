@@ -136,8 +136,6 @@
 				7506A86E2185C55300B51E3E /* MultipeerCommunicator.swift */,
 				7506A8702185E80200B51E3E /* CommunicationManager.swift */,
 				7506A8762186360000B51E3E /* MessagesStorage.swift */,
-				757627F8218E35DA00621ECF /* StorageManager.swift */,
-				757627FA218F1F3E00621ECF /* Storage.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +159,7 @@
 		758D7C8A215808FD00DA3774 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				75AA7AA5218FA58E00BE8BA8 /* CoreData */,
 				757500F42169386A00F5A046 /* Models */,
 				757500F22169381A00F5A046 /* Views */,
 				757500F12169380400F5A046 /* Controllers */,
@@ -180,6 +179,15 @@
 				7506A874218634FA00B51E3E /* UIViewController+Keyboard.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		75AA7AA5218FA58E00BE8BA8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				757627F8218E35DA00621ECF /* StorageManager.swift */,
+				757627FA218F1F3E00621ECF /* Storage.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
