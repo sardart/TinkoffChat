@@ -10,6 +10,12 @@ import Foundation
 import CoreData
 
 
+enum StrorageManagerContext {
+    case master
+    case main
+    case save
+}
+
 class StorageManager {
     
     // MARK: - Properties
@@ -138,6 +144,17 @@ class StorageManager {
         }
     }
     
+    public func getContext(_ type: StrorageManagerContext) -> NSManagedObjectContext? {
+        switch type {
+        case .main:
+            return mainContext
+        case .master:
+            return masterContext
+        case .save:
+            return saveContext
+        }
+    }
+    
     public func perfomSave(context: NSManagedObjectContext, completionHandler: (() -> Void)?) {
         if context.hasChanges {
             context.perform { [weak self] in
@@ -157,5 +174,7 @@ class StorageManager {
             completionHandler?()
         }
     }
+    
+    
     
 }

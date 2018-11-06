@@ -19,10 +19,16 @@
         <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="users" inverseEntity="CDAppUser" syncable="YES"/>
         <relationship name="currentAppUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="currentUser" inverseEntity="CDAppUser" syncable="YES"/>
     </entity>
+    <entity name="ProfileData" representedClassName="ProfileData" syncable="YES" codeGenerationType="class">
+        <attribute name="aboutMe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="CDAppUser" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="CDConversation" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="CDMessage" positionX="-54" positionY="-9" width="128" height="60"/>
-        <element name="CDUser" positionX="-36" positionY="9" width="128" height="120"/>
+        <element name="ProfileData" positionX="-18" positionY="72" width="128" height="90"/>
+        <element name="CDUser" positionX="-18" positionY="72" width="128" height="120"/>
+        <element name="CDMessage" positionX="-9" positionY="117" width="128" height="60"/>
+        <element name="CDConversation" positionX="9" positionY="126" width="128" height="60"/>
+        <element name="CDAppUser" positionX="36" positionY="144" width="128" height="105"/>
     </elements>
 </model>
