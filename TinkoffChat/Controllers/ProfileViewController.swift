@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    // MARK: text input
+    // MARK: - Text input
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
@@ -91,7 +91,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return true
     }
     
-    // MARK: editing mode
+    // MARK: - Editing mode
     
     func configNormalMode() {
         saveButton.isHidden = true
@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         saveButton.isEnabled = true
     }
     
-    // MARK: profile photo editing
+    // MARK: - Profile photo editing
     
     func takePhoto() {
         if saveButton.isEnabled == false {
@@ -154,8 +154,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: data saving
-    
+    // MARK: - Data Saving
+
     func coreDataSaving() {
         self.profileDataManager.save(name: nameTextField.text,
                                      aboutMe: aboutMeTextView.text,
@@ -175,24 +175,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.configNormalMode()
     }
     
-    // MARK: loading saved data
-    
+    // MARK: - Data Loading
+
     func coreDataLoad() {
-        if let profileData = profileDataManager.load() {
-            self.updateProfileDataViews(with: profileData)
-        }
-    }
-    
-    func updateProfileDataViews(with profileData: ProfileData) {
-        self.nameTextField.text = profileData.name
-        self.aboutMeTextView.text = profileData.aboutMe
-        if let imageData = profileData.avatar {
-            self.myPhoto.image = UIImage(data: imageData)
-        }
+        let tuple = profileDataManager.load()
         
+        self.nameTextField.text = tuple?.0
+        self.aboutMeTextView.text = tuple?.1
+        self.myPhoto.image = tuple?.2
     }
     
-    // MARK: @IBActions
+    // MARK: - @IBActions
     
     @IBAction func closeTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -210,7 +203,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         showActionSheet()
     }
     
-    // MARK: alerts
+    // MARK: - Alerts
 
     func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

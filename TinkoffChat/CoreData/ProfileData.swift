@@ -27,8 +27,8 @@ extension ProfileData {
     static func insertProfileData(in context: NSManagedObjectContext) -> ProfileData? {
         guard let profileData = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context) as? ProfileData else { return nil }
         
-        profileData.name = "test name"
-        profileData.aboutMe = "test about me"
+        profileData.name = "Name"
+        profileData.aboutMe = "About Me"
         
         return profileData
     }

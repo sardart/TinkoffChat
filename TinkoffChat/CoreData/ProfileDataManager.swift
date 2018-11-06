@@ -10,10 +10,10 @@ import Foundation
 
 
 protocol ProfileDataManagerDelegate {
+    
     func showAlert(title: String, message: String?)
     func didEndSaving()
     func willStartSaving()
-
 }
 
 class ProfileDataManager {
@@ -40,12 +40,16 @@ class ProfileDataManager {
                 self.delegate?.willStartSaving()
             }
             
-            profileData.name = name
-            profileData.aboutMe = aboutMe
+            if profileData.name != name {
+                profileData.name = name
+            }
+            if profileData.aboutMe != aboutMe {
+                profileData.aboutMe = aboutMe
+            }
             if let avatarImage = photo,
-                let avatarData = UIImagePNGRepresentation(avatarImage) {
+                let avatarData = UIImageJPEGRepresentation(avatarImage, 1),
+                profileData.avatar != avatarData {
                 profileData.avatar = avatarData
-
             }
             
             if saveContext.hasChanges {
@@ -62,15 +66,23 @@ class ProfileDataManager {
         }
     }
     
-    func load() -> ProfileData? {
+    // MARK: - Data Loading
+
+    func load() -> (String?, String?, UIImage?)? {
         guard let mainContext = StorageManager.shared.getContext(.main) else {
             self.delegate?.showAlert(title: "Error", message: "Get context error")
             return nil
         }
         
         let profileData = ProfileData.findOrInsertProfileData(in: mainContext)
+        var photo: UIImage?
+        if let avatarData = profileData?.avatar {
+            photo = UIImage(data: avatarData)
+        }
         
-        return profileData
+        let tuple = (name: profileData?.name, aboutMe: profileData?.aboutMe, avatar: photo)
+        
+        return tuple
     }
     
 
