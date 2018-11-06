@@ -40,17 +40,17 @@
                                                         <constraint firstAttribute="height" constant="60" id="Tlq-pZ-u1d"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="1pk-NI-dji">
-                                                    <rect key="frame" x="78" y="10" width="232" height="20.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="1pk-NI-dji">
+                                                    <rect key="frame" x="78" y="10" width="0.0" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artur Sardaryan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFe-5U-Y2c">
-                                                            <rect key="frame" x="0.0" y="0.0" width="179" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWj-os-r88">
-                                                            <rect key="frame" x="179" y="0.0" width="53" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3w-kT-ZRL">
-                                                    <rect key="frame" x="78" y="32.5" width="232" height="33.5"/>
+                                                    <rect key="frame" x="78" y="32.5" width="0.0" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -382,7 +382,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Z8-FzR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Z8-FzR">
                                 <rect key="frame" x="16" y="36" width="288" height="288"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="R0E-Z8-FzR" secondAttribute="height" multiplier="1:1" id="ooE-kF-Qf1"/>
@@ -405,33 +405,20 @@
                                 <rect key="frame" x="16" y="502" width="288" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-G2-Yfa">
-                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="136" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Kyc-2B-fF3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="GCD">
+                                        <state key="normal" title="Save">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="GCDTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lpg-dW-mI6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLR-T1-1Dl">
-                                        <rect key="frame" x="101.5" y="0.0" width="85" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="eZ2-hJ-r63"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Operation">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="operationTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kac-kt-Rds"/>
+                                            <action selector="saveTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="st4-u8-Ezi"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6V-fq-7fN">
-                                        <rect key="frame" x="202.5" y="0.0" width="85.5" height="50"/>
+                                        <rect key="frame" x="152" y="0.0" width="136" height="50"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Edit">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -494,12 +481,10 @@
                         <outlet property="choosePhotoButton" destination="0SG-Vc-mz4" id="Eaj-3z-Llq"/>
                         <outlet property="contentView" destination="8bC-Xf-vdC" id="XHy-gu-uX3"/>
                         <outlet property="editButton" destination="z6V-fq-7fN" id="gWI-5r-Uao"/>
-                        <outlet property="gcdButton" destination="fYX-G2-Yfa" id="IoG-NQ-MMS"/>
                         <outlet property="myPhoto" destination="R0E-Z8-FzR" id="O2m-pC-dnE"/>
                         <outlet property="nameTextField" destination="EJ7-1r-qyU" id="APi-7T-Yft"/>
-                        <outlet property="operationButton" destination="SLR-T1-1Dl" id="Yq0-Tt-2jE"/>
+                        <outlet property="saveButton" destination="fYX-G2-Yfa" id="icN-fK-uSH"/>
                         <outletCollection property="buttons" destination="fYX-G2-Yfa" collectionClass="NSMutableArray" id="UQV-Hw-YHa"/>
-                        <outletCollection property="buttons" destination="SLR-T1-1Dl" collectionClass="NSMutableArray" id="oMP-Cm-h6l"/>
                         <outletCollection property="buttons" destination="z6V-fq-7fN" collectionClass="NSMutableArray" id="0e9-0Y-dsA"/>
                     </connections>
                 </viewController>

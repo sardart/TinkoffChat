@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDAppUser" representedClassName="CDAppUser" syncable="YES" codeGenerationType="class">
+        <relationship name="conversations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDConversation" inverseName="appUser" inverseEntity="CDConversation" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="currentAppUser" inverseEntity="CDUser" syncable="YES"/>
+        <relationship name="lastMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDMessage" inverseName="lastMessageAppUser" inverseEntity="CDMessage" syncable="YES"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="appUser" inverseEntity="CDUser" syncable="YES"/>
+    </entity>
+    <entity name="CDConversation" representedClassName="CDConversation" syncable="YES" codeGenerationType="class">
+        <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="conversations" inverseEntity="CDAppUser" syncable="YES"/>
+    </entity>
+    <entity name="CDMessage" representedClassName="CDMessage" syncable="YES" codeGenerationType="class">
+        <relationship name="lastMessageAppUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="lastMessage" inverseEntity="CDAppUser" syncable="YES"/>
+    </entity>
+    <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
+        <attribute name="isOnline" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="users" inverseEntity="CDAppUser" syncable="YES"/>
+        <relationship name="currentAppUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDAppUser" inverseName="currentUser" inverseEntity="CDAppUser" syncable="YES"/>
+    </entity>
+    <entity name="ProfileData" representedClassName="ProfileData" syncable="YES" codeGenerationType="class">
+        <attribute name="aboutMe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ProfileData" positionX="-18" positionY="72" width="128" height="90"/>
+        <element name="CDUser" positionX="-18" positionY="72" width="128" height="120"/>
+        <element name="CDMessage" positionX="-9" positionY="117" width="128" height="60"/>
+        <element name="CDConversation" positionX="9" positionY="126" width="128" height="60"/>
+        <element name="CDAppUser" positionX="36" positionY="144" width="128" height="105"/>
+    </elements>
+</model>
