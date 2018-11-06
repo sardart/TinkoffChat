@@ -8,12 +8,10 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, DataManagerDelegate, ProfileDataManagerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, ProfileDataManagerDelegate {
     
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var aboutMeTextView: UITextView!
-    //    @IBOutlet var operationButton: UIButton!
-    //    @IBOutlet var gcdButton: UIButton!
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet weak var myPhoto: UIImageView!
     @IBOutlet weak var choosePhotoButton: UIButton!
@@ -23,22 +21,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var imagePicker = UIImagePickerController()
-//    var gcdDataManager = GCDDataManager()
-//    var operationDataManager = OperationDataManager()
-    
-    //    var initialImage: UIImage? = UIImage(named: "placeholder-user")
-    //    var initialName: String? = "Artur Sardaryan"
-    //    var initailAboutMe: String? = "iOS Developer.\nWill code for food."
-    
+
     var profileData: ProfileData?
     let profileDataManager = ProfileDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        self.nameTextField.text = initialName
-        //        self.myPhoto.image = initialImage
-        //        self.aboutMeTextView.text = initailAboutMe
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -47,19 +35,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         coreDataLoad()
         configNormalMode()
 
-        
-        //        loadSavedImage()
-        //        loadSavedText()
-        
         imagePicker.delegate = self
         nameTextField.delegate = self
         aboutMeTextView.delegate = self
-//        gcdDataManager.delegate = self
-//        operationDataManager.delegate = self
         profileDataManager.delegate = self
-        
-        
-        
     }
     
     func setupViews() {
@@ -116,8 +95,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func configNormalMode() {
         saveButton.isHidden = true
-        //        gcdButton.isHidden = true
-        //        operationButton.isHidden = true
         nameTextField.borderStyle = .none
         nameTextField.isUserInteractionEnabled = false
         aboutMeTextView.isUserInteractionEnabled = false
@@ -130,8 +107,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         nameTextField.resignFirstResponder()
         editButton.isHidden = true
         saveButton.isHidden = false
-        //        operationButton.isHidden = false
-        //        gcdButton.isHidden = false
         nameTextField.borderStyle = .roundedRect
         nameTextField.isUserInteractionEnabled = true
         aboutMeTextView.isUserInteractionEnabled = true
@@ -142,19 +117,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func disableSaving() {
         saveButton.alpha = 0.5
         saveButton.isEnabled = false
-        //        gcdButton.alpha = 0.5
-        //        gcdButton.isEnabled = false
-        //        operationButton.alpha = 0.5
-        //        operationButton.isEnabled = false
     }
     
     func enableSaving() {
         saveButton.alpha = 1
         saveButton.isEnabled = true
-        //        gcdButton.alpha = 1
-        //        gcdButton.isEnabled = true
-        //        operationButton.alpha = 1
-        //        operationButton.isEnabled = true
     }
     
     // MARK: profile photo editing
@@ -189,36 +156,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // MARK: data saving
     
-    func saveData(with dataManager: DataManager) {
-        //        if let name = nameTextField.text,
-        //            name != initialName {
-        //            dataManager.saveText(name, key: "name")
-        //            initialName = name
-        //        }
-        //        if let aboutMe = aboutMeTextView.text,
-        //            aboutMe != initailAboutMe {
-        //            dataManager.saveText(aboutMe, key: "aboutMe")
-        //            initailAboutMe = aboutMe
-        //        }
-        //
-        //        if let image = myPhoto.image,
-        //            initialImage != image {
-        //            activityIndicator.startAnimating()
-        //            disableSaving()
-        //            initialImage = image
-        //            let filename = self.getDocumentsDirectory().appendingPathComponent("avatar.png")
-        //            dataManager.saveImage(image, path: filename)
-        //        } else {
-        //            showAlert(title: "Success", message: "Data successfully saved", success: true, sender: dataManager)
-        //        }
-        //
-    }
-    //
-    //    func getDocumentsDirectory() -> URL {
-    //        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    //        return paths[0]
-    //    }
-    
     func coreDataSaving() {
         self.profileDataManager.save(name: nameTextField.text,
                                      aboutMe: aboutMeTextView.text,
@@ -239,29 +176,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // MARK: loading saved data
-    
-    //    func loadSavedText() {
-    //        DispatchQueue.main.async {
-    //            if let name = self.gcdDataManager.loadText(key: "name") {
-    //                self.nameTextField.text = name
-    //                self.initialName = name
-    //            }
-    //            if let aboutMe = self.gcdDataManager.loadText(key: "aboutMe") {
-    //                self.aboutMeTextView.text = aboutMe
-    //                self.initailAboutMe = aboutMe
-    //            }
-    //        }
-    //    }
-    //
-    //    func loadSavedImage() {
-    //        DispatchQueue.main.async {
-    //            let filename = self.getDocumentsDirectory().appendingPathComponent("avatar.png")
-    //            if let image = self.gcdDataManager.loadImage(path: filename) {
-    //                self.myPhoto.image = image
-    //                self.initialImage = image
-    //            }
-    //        }
-    //    }
     
     func coreDataLoad() {
         if let profileData = profileDataManager.load() {
@@ -284,14 +198,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.dismiss(animated: true, completion: nil)
     }
     
-    //    @IBAction func operationTapped(_ sender: Any) {
-    //        saveData(with: operationDataManager)
-    //    }
-    //
-    //    @IBAction func GCDTapped(_ sender: Any) {
-    //        saveData(with: gcdDataManager)
-    //    }
-    
     @IBAction func saveTapped(_ sender: Any) {
         coreDataSaving()
     }
@@ -305,26 +211,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // MARK: alerts
-    
-    func showAlert(title: String, message: String, success: Bool, sender: DataManager) {
-        //        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        //        alertController.view.tintColor = UIColor.black
-        //        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-        //            self.configNormalMode()
-        //            self.activityIndicator.stopAnimating()
-        //        }
-        //
-        //        if !success {
-        //            let repeatAction = UIAlertAction(title: "Try Again", style: .default) { (action) in
-        //                self.saveData(with: sender)
-        //            }
-        //            alertController.addAction(repeatAction)
-        //        }
-        //
-        //        alertController.addAction(okAction)
-        //        self.present(alertController, animated: true, completion: nil)
-    }
-    
+
     func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
